@@ -1,0 +1,27 @@
+{
+  "setting": [
+    { "key": "Setting_title", "value": "CÀI ĐẶT" },
+    { "key": "Setting_bt_settingmaster", "value": "CÀI ĐẶT CHUNG" },
+    { "key": "Setting_bt_audio", "value": "ÂM THANH" },
+    { "key": "Setting_bt_exit", "value": "THOÁT" },
+    { "key": "Setting_bt_save", "value": "LƯU" },
+    { "key": "Setting_bt_fullscreen", "value": "Toàn Màn Hình" },
+    { "key": "Setting_bt_windown", "value": "Cửa Sổ" },
+    { "key": "Setting_language", "value": "Ngôn Ngữ" },
+    { "key": "Setting_screenmodel", "value": "Chế Độ Màn Hình" },
+    { "key": "Setting_phangiai", "value": "Độ Phân Giải" },
+    { "key": "Setting_fps", "value": "Tốc Độ Khung Hình" },
+    { "key": "Setting_mousespeed", "value": "Tốc Độ Chuột" },
+    { "key": "Setting_audiovolume", "value": "Âm Lượng Tổng" },
+    { "key": "Setting_sfxvolume", "value": "Âm Lượng SFX" },
+    { "key": "Setting_musicvolume", "value": "Âm Lượng Nhạc" }
+  ],
+
+  "menu":[
+    { "key": "continue", "value": "CHƠI TIẾP" },
+    { "key": "newgame", "value": "BẮT ĐẦU" },
+    { "key": "about", "value": "GIỚI THIỆU" },
+    { "key": "setting", "value": "CÀI ĐẶT" },
+    { "key": "exit", "value": "THOÁT" }
+  ]
+}

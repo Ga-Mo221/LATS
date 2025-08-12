@@ -1,0 +1,27 @@
+{
+  "setting": [
+    { "key": "Setting_title", "value": "SETTINGS" },
+    { "key": "Setting_bt_settingmaster", "value": "GENERAL SETTINGS" },
+    { "key": "Setting_bt_audio", "value": "AUDIO" },
+    { "key": "Setting_bt_exit", "value": "EXIT" },
+    { "key": "Setting_bt_save", "value": "SAVE" },
+    { "key": "Setting_bt_fullscreen", "value": "Fullscreen" },
+    { "key": "Setting_bt_windown", "value": "Windowed" },
+    { "key": "Setting_language", "value": "Language" },
+    { "key": "Setting_screenmodel", "value": "Screen Mode" },
+    { "key": "Setting_phangiai", "value": "Resolution" },
+    { "key": "Setting_fps", "value": "Frame Rate" },
+    { "key": "Setting_mousespeed", "value": "Mouse Sensitivity" },
+    { "key": "Setting_audiovolume", "value": "Master Volume" },
+    { "key": "Setting_sfxvolume", "value": "SFX Volume" },
+    { "key": "Setting_musicvolume", "value": "Music Volume" }
+  ],
+
+  "menu":[
+    { "key": "continue", "value": "CONTINUE" },
+    { "key": "newgame", "value": "START GAME" },
+    { "key": "about", "value": "ABOUT" },
+    { "key": "setting", "value": "SETTING" },
+    { "key": "exit", "value": "EXIT" }
+  ]
+}
