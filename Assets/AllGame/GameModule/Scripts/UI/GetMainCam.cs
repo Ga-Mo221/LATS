@@ -4,6 +4,11 @@ public class GetMainCam : MonoBehaviour
 {
     void Start()
     {
+        setupCamera();
+    }
+
+    public void setupCamera()
+    {
         GameObject mainCamObj = Camera.main?.gameObject;
 
         Canvas canvas = transform.GetComponent<Canvas>();
@@ -13,15 +18,16 @@ public class GetMainCam : MonoBehaviour
             if (cam != null)
             {
                 canvas.worldCamera = cam;
+                canvas.sortingLayerName = "UI";
             }
             else
             {
-                Debug.LogWarning("mainCamObj không chứa component Camera.");
+                Debug.LogWarning("[GetMainCam] mainCamObj không chứa component Camera.");
             }
         }
         else
         {
-            Debug.LogWarning("Không tìm thấy Canvas hoặc mainCamObj null.");
+            Debug.LogWarning("[GetMainCam] Không tìm thấy Canvas hoặc mainCamObj null.");
         }
     }
 }

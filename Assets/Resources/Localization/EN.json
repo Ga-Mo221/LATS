@@ -23,5 +23,17 @@
     { "key": "about", "value": "ABOUT" },
     { "key": "setting", "value": "SETTING" },
     { "key": "exit", "value": "EXIT" }
+  ],
+
+  "gameOption":[
+    { "key": "setting", "value": "SETTING" },
+    { "key": "menu", "value": "MENU" },
+    { "key": "exit", "value": "EXIT" }
+  ],
+
+  "gameOver":[
+    { "key": "gameover", "value": "Game over" },
+    { "key": "continue", "value": "CONTINUE" },
+    { "key": "exit", "value": "MENU" }
   ]
 }

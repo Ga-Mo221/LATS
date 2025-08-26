@@ -5,6 +5,8 @@ public class LocalizationData
 {
     public List<LocalizedText> setting;
     public List<LocalizedText> menu;
+    public List<LocalizedText> gameOption;
+    public List<LocalizedText> gameOver;
 }
 
 [System.Serializable]

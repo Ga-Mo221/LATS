@@ -23,7 +23,7 @@ public class LoadLanguage : MonoBehaviour
         loadLanguage();
     }
 
-    private void loadLanguage()
+    public void loadLanguage()
     {
         if (!debug()) return;
         LocalizationManager loc = new LocalizationManager();
@@ -48,72 +48,72 @@ public class LoadLanguage : MonoBehaviour
     {
         if (!_title)
         {
-            Debug.LogError("chưa có TextMeshProGUI title");
+            Debug.LogError("[LoadLanguage] chưa có TextMeshProGUI title");
             return false;
         }
         if (!_btSettingMaster)
         {
-            Debug.LogError("chưa có TextMeshProGUI game setting");
+            Debug.LogError("[LoadLanguage] chưa có TextMeshProGUI game setting");
             return false;
         }
         if (!_btAudio)
         {
-            Debug.LogError("chưa có TextMeshProGUI audio");
+            Debug.LogError("[LoadLanguage] chưa có TextMeshProGUI audio");
             return false;
         }
         if (!_language)
         {
-            Debug.LogError("chưa có TextMeshProGUI language");
+            Debug.LogError("[LoadLanguage] chưa có TextMeshProGUI language");
             return false;
         }
         if (!_screenMode)
         {
-            Debug.LogError("chưa có TextMeshProGUI screrenmode");
+            Debug.LogError("[LoadLanguage] chưa có TextMeshProGUI screrenmode");
             return false;
         }
         if (!_resolution)
         {
-            Debug.LogError("chưa có TextMeshProGUI resolution");
+            Debug.LogError("[LoadLanguage] chưa có TextMeshProGUI resolution");
             return false;
         }
         if (!_fps)
         {
-            Debug.LogError("chưa có TextMeshProGUI fps");
+            Debug.LogError("[LoadLanguage] chưa có TextMeshProGUI fps");
             return false;
         }
         if (!_btExit)
         {
-            Debug.LogError("chưa có TextMeshProGUI exit");
+            Debug.LogError("[LoadLanguage] chưa có TextMeshProGUI exit");
             return false;
         }
         if (!_btSave)
         {
-            Debug.LogError("chưa có TextMeshProGUI save");
+            Debug.LogError("[LoadLanguage] chưa có TextMeshProGUI save");
             return false;
         }
         if (!_audioVolume)
         {
-            Debug.LogError("chưa có TextMeshProGUI audio volume");
+            Debug.LogError("[LoadLanguage] chưa có TextMeshProGUI audio volume");
             return false;
         }
         if (!_sfxVolume)
         {
-            Debug.LogError("chưa có TextMeshProGUI sfx volume");
+            Debug.LogError("[LoadLanguage] chưa có TextMeshProGUI sfx volume");
             return false;
         }
         if (!_musicVolume)
         {
-            Debug.LogError("chưa có TextMeshProGUI music volume");
+            Debug.LogError("[LoadLanguage] chưa có TextMeshProGUI music volume");
             return false;
         }
         if (!_btFullScreen)
         {
-            Debug.LogError("chưa có TextMeshProGUI fullscene");
+            Debug.LogError("[LoadLanguage] chưa có TextMeshProGUI fullscene");
             return false;
         }
         if (!_btWindown)
         {
-            Debug.LogError("chưa có TextMeshProGUI windown");
+            Debug.LogError("[LoadLanguage] chưa có TextMeshProGUI windown");
             return false;
         }
         return true;

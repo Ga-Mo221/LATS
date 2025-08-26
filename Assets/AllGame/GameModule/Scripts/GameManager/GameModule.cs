@@ -15,6 +15,10 @@ public class GameModule : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Add methods to manage game state, such as starting a new game, loading a game, etc.
+    [Header("Prefab")]
     [SerializeField] public GameObject _settingPrefab;
+    [SerializeField] public GameObject _playerPrefab;
+    [SerializeField] public GameObject _damageTextPrefab;
+    [SerializeField] public GameObject _gameOptionPrefab;
+    [SerializeField] public GameObject _gameOverPrefab;
 }

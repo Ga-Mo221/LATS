@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System;
 using Unity.VisualScripting;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class SettingController : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class SettingController : MonoBehaviour
 
     void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         setActiveGobj(_settingAudio, false);
     }
 
@@ -36,6 +38,8 @@ public class SettingController : MonoBehaviour
         }
     }
 
+
+    #region Open Setting Audio
     public void openSettingAudio()
     {
         setActiveGobj(_settingMaster, false);
@@ -45,8 +49,10 @@ public class SettingController : MonoBehaviour
         selectButton(_buttonSettingMaster, false);
         selectButton(_buttonTutorial, false);
     }
+    #endregion
 
 
+    #region Open Setting Master
     public void openSettingMaster()
     {
         setActiveGobj(_settingAudio, false);
@@ -56,7 +62,10 @@ public class SettingController : MonoBehaviour
         selectButton(_buttonSettingMaster, true);
         selectButton(_buttonTutorial, false);
     }
+    #endregion
 
+
+    #region Open Tutorial
     public void openTutorial()
     {
         setActiveGobj(_settingAudio, false);
@@ -66,8 +75,10 @@ public class SettingController : MonoBehaviour
         selectButton(_buttonSettingMaster, false);
         selectButton(_buttonTutorial, true);
     }
+    #endregion
 
 
+    #region Change Image Button Fullscreen
     public void selectFullScreen()
     {
         SettingManager.Instance._settingTam.isFullscreen = true;
@@ -75,8 +86,10 @@ public class SettingController : MonoBehaviour
         selectButton(_windown, false);
         //Debug.Log($"settingtam:{SettingManager.Instance._settingTam.isFullscreen} \ncurensetting:{SettingManager.Instance.CurrentSettings.isFullscreen}");
     }
+    #endregion
 
 
+    #region Change Image Button Windown
     public void selectWindown()
     {
         SettingManager.Instance._settingTam.isFullscreen = false;
@@ -84,8 +97,10 @@ public class SettingController : MonoBehaviour
         selectButton(_windown, true);
         //Debug.Log($"settingtam:{SettingManager.Instance._settingTam.isFullscreen} \ncurensetting:{SettingManager.Instance.CurrentSettings.isFullscreen}");
     }
+    #endregion
 
 
+    #region Left Change Language
     public void left_ChangeLanguage()
     {
         Language language = SettingManager.Instance._settingTam.language;
@@ -95,8 +110,10 @@ public class SettingController : MonoBehaviour
         if (language == Language.EN)
             SettingManager.Instance._settingTam.language = Language.VI;
     }
+    #endregion
 
 
+    #region Right Change Language
     public void right_ChangeLanguage()
     {
         Language language = SettingManager.Instance._settingTam.language;
@@ -106,8 +123,10 @@ public class SettingController : MonoBehaviour
         if (language == Language.EN)
             SettingManager.Instance._settingTam.language = Language.VI;
     }
+    #endregion
 
 
+    #region Left Change Fps
     public void left_ChangeFPS()
     {
         int _fps = SettingManager.Instance._settingTam.targetFPS;
@@ -115,8 +134,10 @@ public class SettingController : MonoBehaviour
         else if (_fps == 120) SettingManager.Instance._settingTam.targetFPS = 60;
         else if (_fps == 144) SettingManager.Instance._settingTam.targetFPS = 120;
     }
+    #endregion
 
 
+    #region Right Change Fps
     public void right_ChangeFPS()
     {
         int _fps = SettingManager.Instance._settingTam.targetFPS;
@@ -124,8 +145,10 @@ public class SettingController : MonoBehaviour
         else if (_fps == 120) SettingManager.Instance._settingTam.targetFPS = 144;
         else if (_fps == 144) SettingManager.Instance._settingTam.targetFPS = 60;
     }
+    #endregion
 
 
+    #region Left Change Resolution
     public void left_ChangeResolution()
     {
         int _width = SettingManager.Instance._settingTam.resolutionWidth;
@@ -146,10 +169,11 @@ public class SettingController : MonoBehaviour
             SettingManager.Instance._settingTam.resolutionWidth = 1280;
             SettingManager.Instance._settingTam.resolutionHeight = 720;
         }
-
     }
+    #endregion
 
 
+    #region  Right Change Resolution
     public void right_ChangeResolution()
     {
         int _width = SettingManager.Instance._settingTam.resolutionWidth;
@@ -171,43 +195,57 @@ public class SettingController : MonoBehaviour
             SettingManager.Instance._settingTam.resolutionHeight = 1440;
         }
     }
+    #endregion
 
 
+    #region Change Audio Volume
     public void changeAudioVolume(float value)
     {
         SettingManager.Instance._settingTam.masterVolume = value;
     }
+    #endregion
 
 
+    #region Change SFX Volume
     public void changeSFXVolume(float value)
     {
         SettingManager.Instance._settingTam.sfxVolume = value;
     }
+    #endregion
 
 
+    #region Change Music Volume
     public void changeMusicVolume(float value)
     {
         SettingManager.Instance._settingTam.musicVolume = value;
     }
+    #endregion
 
 
+    #region Close Setting
     public Action onClose;
     public void closeGobj()
     {
+        GameManager.Instance._canOpenWindown = true;
         SettingManager.Instance.CurrentSettingsTosettingtam();
         onClose?.Invoke();
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
+    #endregion
 
 
+    #region Save Setting
     public void saveSetting()
     {
+        GameManager.Instance._canOpenWindown = true;
         SettingManager.Instance.SaveSettings();
         onClose?.Invoke();
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
+    #endregion
 
 
+    #region Set Active Panel
     private void setActiveGobj(GameObject obj, bool ok)
     {
         if (!ok)
@@ -223,7 +261,10 @@ public class SettingController : MonoBehaviour
             obj.GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
     }
+    #endregion
 
+
+    #region Change Image Button Select
     private void selectButton(GameObject _bt, bool ok)
     {
         var _content = _bt.transform.Find("Content");
@@ -245,4 +286,5 @@ public class SettingController : MonoBehaviour
             _text.color = Color.white;
         }
     }
+    #endregion
 }

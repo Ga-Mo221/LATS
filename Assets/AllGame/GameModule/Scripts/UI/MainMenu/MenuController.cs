@@ -1,20 +1,20 @@
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    private GameObject _mainMenuButtons;
+    [SerializeField] private GameObject _mainMenuButtons;
     private LoadMainMenuLanguage _loadLanguage;
 
     void Awake()
     {
-        _mainMenuButtons = transform.Find("Buttons").gameObject;
         if (!_mainMenuButtons)
-            Debug.LogError("Chưa lấy được Button");
+            Debug.LogError("[MenuController] Chưa lấy được Button");
         _loadLanguage = GetComponent<LoadMainMenuLanguage>();
         if (!_loadLanguage)
-            Debug.LogError("Chua lay duoc LoadMainMenuLanguage");
+            Debug.LogError("[MenuController] Chua lay duoc LoadMainMenuLanguage");
     }
 
     public void newGame()
@@ -25,12 +25,25 @@ public class MenuController : MonoBehaviour
     public void openSetting()
     {
         _mainMenuButtons.SetActive(false);
-        var _settingClose = GameManager.Instance.openSetting();
+        GameManager.Instance._loadlanguageSetting.loadLanguage();
+        GameManager.Instance._getMainCameraSetting.setupCamera();
+        GameManager.Instance._setting.SetActive(true);
+        GameManager.Instance._canOpenWindown = false;
+        SettingController _settingClose = GameManager.Instance._setting.GetComponent<SettingController>();
         _settingClose.onClose += () =>
         {
-            _mainMenuButtons.SetActive(true); // Bật lại nút menu khi đóng
-            _loadLanguage.loadLanguage();
-        };
+            if (SceneManager.GetActiveScene().name == "GameMenu")
+            {
+                if (!_mainMenuButtons)
+                {
+                    Debug.LogError("[MenuController] Chưa lấy được Button");
+                    return;
+                }
+                _mainMenuButtons.SetActive(true); // Bật lại nút menu khi đóng
+                _loadLanguage.loadLanguage();
+            }
+        }
+            ;
     }
 
     public void exitGame()

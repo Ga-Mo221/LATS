@@ -1,0 +1,213 @@
+using UnityEngine;
+
+[System.Serializable]
+public class PlayerStarts
+{
+    #region Player Start
+    // Spawn Point
+    public Vector3 _StartPoint;
+
+    // Level
+    public int _level;
+
+    // Exp
+    public float _currentExp; // exp hiện tại
+    public float _requiredExp; // exp cần để lên cấp
+
+    // Mạng sống
+    public int _lifeCount;
+    public int _currentLifeCount;
+
+    // Mana 
+    public float _maxMana;
+    public float _currentMana;
+
+    // HP
+    public float _maxHealth; // máu tối đa
+    public float _currentHealth; // máu hiện tại
+
+    // Stamina
+    public float _stamina; // thể lực
+
+    // Move speed
+    public float _walkSpeed; // tốc độ đi bộ
+    public float _runSpeed; // tốc độ chạy
+
+    // Nhảy
+    public float _jumpForce; // lực nhảy
+
+    // Damage
+    public float _physicalDamage; // ST vật lý
+    public float _magicDamage; // ST phép
+
+    // Giáp
+    public float _physicalDefense; // kháng vật lý tính theo phần trăm
+    public float _armor; // giáp
+    public float _magicResist; // kháng phép
+
+    // Dash
+    public float _dashPower; // tốc độ trượt
+    public float _dashingCooldown;
+
+    // Attack speed
+    public float _attackSpeed; // tốc độ đánh 100%
+
+    // Delay
+    public float _delay; // di chuyển, khoảng cách dash, tốc độ đánh (10%, 20%,...)
+
+    // Tỉ lệ chí mạng
+    public float _critChancePhysical; // ST vật lý
+    public float _critChanceMagic; // ST phép
+    public float _critMultiplier;      // Nhân 1.5x khi chí mạng
+
+    // Giảm hồi chiêu
+    public float _cooldownReduction; // 10%, 20%,...
+
+    // tiền tệ
+    public int _xeng;
+    public int _linhAn;
+
+    // Hướng dẫn
+    public bool _tutorialRun;
+    public bool _tutorialJump;
+    public bool _tutorialSit;
+    public bool _tutorialAttack;
+    public bool _tutorialDash;
+
+    // Kỹ năng đã mở
+    public bool _doubleJump;
+    public bool _skillQ;
+    public bool _skillW;
+    public bool _skillE;
+    #endregion
+
+
+
+    #region GainExp and LeverUP
+    // tăng exp
+    public bool GainExp(float amount)
+    {
+        _currentExp += amount;
+
+        bool leveledUp = false;
+
+        while (_currentExp >= _requiredExp)
+        {
+            LevelUp();
+            leveledUp = true;
+        }
+
+        return leveledUp;
+    }
+
+    // xử lý lên cấp
+    private void LevelUp()
+    {
+        _level++;
+        _currentExp -= _requiredExp;
+        _requiredExp = Mathf.RoundToInt(_requiredExp * 1.25f);
+
+        _maxHealth += 20;
+        _physicalDamage += 5;
+        _magicDamage += 5;
+        _armor += 2;
+        _magicResist += 2;
+        _attackSpeed += 0.05f;
+
+        _currentHealth = _maxHealth;
+    }
+    #endregion
+
+
+    #region Get Move Speed
+    // Tính tốc độ di chuyển dựa theo trạng thái chạy hoặc đi bộ và ảnh hưởng của delay.
+    public float GetMoveSpeed(bool isRunning)
+    {
+        return isRunning ? _runSpeed - ((_runSpeed / 100) * _delay) : _walkSpeed - ((_walkSpeed / 100) * _delay);
+    }
+    #endregion
+
+
+    #region Get Dashing Cooldown
+    public float getDashingCooldown()
+    {
+        return _dashingCooldown - ((_dashingCooldown / 100) * _cooldownReduction);
+    }
+    #endregion
+
+
+    #region Get Dash Power
+    public float getDashPower()
+    {
+        return _dashPower - ((_dashPower / 100) * _delay);
+    }
+    #endregion
+
+
+    #region Get Attack Speed
+    // 1f = 100%
+    public float getAttackSpeed()
+    {
+        float _atkspeed = _attackSpeed;
+        _atkspeed = (_atkspeed - _delay) / 100;
+        return _atkspeed;
+    }
+    #endregion
+
+
+    #region Get Physic Damage
+    public float getPhysicDamage()
+    {
+        float _randomValue = Random.Range(0f, 100f);
+        bool _isCrit = _randomValue <= _critChancePhysical;
+
+        float _damage = _isCrit ? _physicalDamage * _critMultiplier : _physicalDamage;
+
+        return _damage;
+    }
+    #endregion
+
+
+    #region Take Damage
+    public float takeDamage(float damage, bool magic)
+    {
+        float _damage = 0;
+        if (!magic)
+        {
+            _damage = damage * (1f - _physicalDefense / 100f);
+            _damage = _damage - _armor;
+            if (_damage <= 0) _damage = 1;
+            _currentHealth -= _damage;
+        }
+        else
+        {
+            _damage = damage - _magicResist;
+            if (_damage <= 0) _damage = 1;
+            _currentHealth -= _damage;
+        }
+        return _damage;
+    }
+    #endregion
+
+
+    #region Set Life Count
+    public void lifeCount(bool add)
+    {
+        if (add)
+        {
+            if (_currentLifeCount < _lifeCount)
+            {
+                _currentLifeCount++;
+            }
+        }
+        else
+        {
+            if (_currentLifeCount > 0)
+            {
+                _currentLifeCount--;
+                _currentHealth = _maxHealth;
+            }
+        }
+    }
+    #endregion
+}

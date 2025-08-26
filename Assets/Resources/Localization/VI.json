@@ -23,5 +23,17 @@
     { "key": "about", "value": "GIỚI THIỆU" },
     { "key": "setting", "value": "CÀI ĐẶT" },
     { "key": "exit", "value": "THOÁT" }
+  ],
+
+  "gameOption":[
+    { "key": "setting", "value": "CÀI ĐẶT" },
+    { "key": "menu", "value": "MENU" },
+    { "key": "exit", "value": "THOÁT" }
+  ],
+
+  "gameOver":[
+    { "key": "gameover", "value": "Game over" },
+    { "key": "continue", "value": "chơi lại" },
+    { "key": "exit", "value": "THOÁT" }
   ]
 }

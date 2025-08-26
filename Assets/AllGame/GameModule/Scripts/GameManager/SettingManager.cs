@@ -4,10 +4,8 @@ using TMPro;
 
 public class SettingManager : MonoBehaviour
 {
+    #region Singer Ton
     public static SettingManager Instance { get; private set; }
-
-    public SettingData CurrentSettings = new SettingData();
-    public SettingDatatam _settingTam = new SettingDatatam();
 
     private string settingPath => Path.Combine(Application.persistentDataPath, "settings.json");
 
@@ -27,8 +25,14 @@ public class SettingManager : MonoBehaviour
         CurrentSettingsTosettingtam();
         ApplyScreenMode();
     }
+    #endregion
 
 
+    public SettingData CurrentSettings = new SettingData();
+    public SettingDatatam _settingTam = new SettingDatatam();
+
+
+    #region Current => setting tam
     public void CurrentSettingsTosettingtam()
     {
         _settingTam.language = CurrentSettings.language;
@@ -40,8 +44,10 @@ public class SettingManager : MonoBehaviour
         _settingTam.sfxVolume = CurrentSettings.sfxVolume;
         _settingTam.musicVolume = CurrentSettings.musicVolume;
     }
+    #endregion
 
 
+    #region Setting tam => current
     private void settingtamToCurrentSettings()
     {
         CurrentSettings.language = _settingTam.language;
@@ -53,8 +59,10 @@ public class SettingManager : MonoBehaviour
         CurrentSettings.sfxVolume = _settingTam.sfxVolume;
         CurrentSettings.musicVolume = _settingTam.musicVolume;
     }
+    #endregion
 
 
+    #region Save Setting
     public void SaveSettings()
     {
         settingtamToCurrentSettings();
@@ -65,8 +73,10 @@ public class SettingManager : MonoBehaviour
         ApplyScreenMode();
         LoadSettings();
     }
+    #endregion
 
 
+    #region Load Setting
     public void LoadSettings()
     {
         if (File.Exists(settingPath))
@@ -80,39 +90,41 @@ public class SettingManager : MonoBehaviour
             SetDefaultSettings();
         }
     }
+    #endregion
 
 
+    #region Create new setting
     private void SetDefaultSettings()
     {
-        Resolution defaultRes = Screen.currentResolution;
+        //Resolution defaultRes = Screen.currentResolution;
         CurrentSettings = new SettingData
         {
             language = Language.VI,
             isFullscreen = true,
-            resolutionWidth = defaultRes.width,
-            resolutionHeight = defaultRes.height,
+            resolutionWidth = 1920,
+            resolutionHeight = 1080,
             targetFPS = 60,
             masterVolume = 1f,
             sfxVolume = 1f,
             musicVolume = 1f
         };
     }
+    #endregion
 
 
+    #region Apply Screen Mode
     public void ApplyScreenMode()
     {
         if (_settingTam.isFullscreen)
         {
             Screen.SetResolution(_settingTam.resolutionWidth, _settingTam.resolutionHeight, FullScreenMode.FullScreenWindow);
-            Debug.Log($"Full Screen: {_settingTam.isFullscreen}\n width: {_settingTam.resolutionWidth} \n Height: {_settingTam.resolutionHeight}");
         }
         else
         {
             Screen.SetResolution(1280, 720, FullScreenMode.Windowed);
-            Debug.Log($"Full Screen: {_settingTam.isFullscreen}\n width: {1280} \n Height: {720}");
         }
 
         Application.targetFrameRate = _settingTam.targetFPS;
-        Debug.Log($"Fps: {_settingTam.targetFPS}");
     }
+    #endregion
 }
