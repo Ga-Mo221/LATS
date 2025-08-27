@@ -19,7 +19,7 @@ public class LauncherChecker : MonoBehaviour
             if (arg == "-launch_by_launcher")
             {
                 hasLauncherFlag = true;
-                gameObject.SetActive(false);
+                SceneManager.LoadScene("GameMenu");
                 break;
             }
         }

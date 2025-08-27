@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        if (SceneManager.GetActiveScene().name == "GameMenu")
+        {
+            Instantiate(GameModule.Instance._IntroPrefab);
+        }
         createGameUI();
     }
 
@@ -133,7 +137,7 @@ public class GameManager : MonoBehaviour
     #region New Game
     public void newGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
     #endregion
 

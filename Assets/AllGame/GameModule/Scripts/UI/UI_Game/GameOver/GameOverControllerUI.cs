@@ -1,6 +1,4 @@
-using System.Threading.Tasks.Sources;
 using TMPro;
-using UnityEditor.ProjectWindowCallback;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;

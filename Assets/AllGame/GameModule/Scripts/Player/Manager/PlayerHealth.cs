@@ -99,6 +99,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (PlayerManager.Instance._start._currentHealth <= 0)
         {
+            PlayerManager.Instance._start._currentHealth = 0;
             PlayerManager.Instance.setIsAlive(false);
             PlayerManager.Instance.setCurrentState(PlayerState.Die);
             PlayerManager.Instance._start.lifeCount(false);
@@ -128,7 +129,8 @@ public class PlayerHealth : MonoBehaviour
     #region Respawn Player
     private IEnumerator revive()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
+        PlayerManager.Instance._start.resetHealthAndMana();
         PlayerManager.Instance.setIsAlive(true);
         Vector3 _point = PlayerManager.Instance._respawnPoint;
         if (_point != Vector3.zero || _point != null)

@@ -21,4 +21,5 @@ public class GameModule : MonoBehaviour
     [SerializeField] public GameObject _damageTextPrefab;
     [SerializeField] public GameObject _gameOptionPrefab;
     [SerializeField] public GameObject _gameOverPrefab;
+    [SerializeField] public GameObject _IntroPrefab;
 }

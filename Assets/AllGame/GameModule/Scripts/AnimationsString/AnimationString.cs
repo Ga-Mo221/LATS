@@ -14,6 +14,7 @@ internal class AnimationString
     internal static string _isAttack = "IsAttack";
     internal static string _weaponType = "WeaponType";
     internal static string _isAlive = "IsALive";
+    internal static string _isDetected = "IsDetected";
 
     // Enemy
 }
