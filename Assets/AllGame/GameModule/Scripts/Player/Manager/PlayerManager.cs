@@ -27,6 +27,7 @@ public class PlayerManager : MonoBehaviour
     [Header("GameObject")]
     [SerializeField] public PlayerHealth _playerHealth;
     [SerializeField] public PlayerRada _rada;
+    [SerializeField] public PlayerAnimation _anim;
     public GameObject _player { get; set; }
 
     [Header("Player Stats")]
@@ -53,10 +54,13 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         if (!_playerHealth)
-            Debug.LogWarning("[PlayerManager] Chưa gán '_playerHealth'");
+            Debug.LogError("[PlayerManager] Chưa gán '_playerHealth'");
 
         if (!_rada)
-            Debug.LogWarning("[PlayerManager] Chưa gán '_rada'");
+            Debug.LogError("[PlayerManager] Chưa gán '_rada'");
+
+        if (!_anim)
+            Debug.LogError("[PlayerManager] Chưa gán 'PlayerAnimation'");
     }
 
 
@@ -238,9 +242,12 @@ public class PlayerManager : MonoBehaviour
     #endregion
 
 
-    #region Destroy Player
-    public void destroyPlayer()
-        => Destroy(gameObject);
+    #region Set Attack Speed
+    public void setAttackSpeed()
+    {
+        float _attackSpeed = _start.getAttackSpeed();
+        _anim.setFloadAttackSpeed(_attackSpeed);
+    }
     #endregion
 
 
@@ -248,5 +255,11 @@ public class PlayerManager : MonoBehaviour
     public void setPlayerDetected(bool amount) => _isDetected = amount;
 
     public bool getPlayerDetected() => _isDetected; 
+    #endregion
+
+
+    #region Destroy Player
+    public void destroyPlayer()
+        => Destroy(gameObject);
     #endregion
 }

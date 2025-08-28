@@ -35,5 +35,40 @@
     { "key": "gameover", "value": "Game over" },
     { "key": "continue", "value": "chơi lại" },
     { "key": "exit", "value": "THOÁT" }
+  ],
+
+  "itemButton":[
+    { "key": "use", "value": "sử dụng" },
+    { "key": "equie", "value": "trang bị" },
+    { "key": "reqair", "value": "sửa" },
+    { "key": "sell", "value": "bán" },
+    { "key": "delete", "value": "xóa" }
+  ],
+
+  "itemStats":[
+    { "key": "name", "value": "Tên" },
+    { "key": "weaponType", "value": "Loại Trang Bị: Vũ Khí" },
+    { "key": "helmetType", "value": "Loại Trang Bị: Nón" },
+    { "key": "armorType", "value": "Loại Trang Bị: Giáp" },
+    { "key": "bootsType", "value": "Loại Trang Bị: Giày" },
+    { "key": "accessoryType", "value": "Loại Trang Bị: Phụ Kiện" },
+    { "key": "consumableType", "value": "Loại Trang Bị: Vật Phẩm Tiêu Hao" },
+    { "key": "rarityCommon", "value": "Độ Hiếm: Thường" },
+    { "key": "rarityRare", "value": "Độ Hiếm: Hiếm" },
+    { "key": "rarityLegendary", "value": "Độ Hiếm: Huyền Thoại" },
+    { "key": "weaponMelee", "value": "Loại Vũ Khí: Cận Chiến" },
+    { "key": "weaponRanged", "value": "Loại Vũ Khí: Tầm Xa" },
+    { "key": "physicalDamage", "value": "Sát Thương" },
+    { "key": "magicDamage", "value": "Phép Thuật" },
+    { "key": "attackSpeed", "value": "Tốc Độ Đánh" },
+    { "key": "moveSpped", "value": "Tốc Độ Di Chuyển" },
+    { "key": "health", "value": "Máu" },
+    { "key": "critPhysical", "value": "Tỉ lệ Chí Mạng Vật Lý" },
+    { "key": "critMagic", "value": "Tỉ Lệ Chí Mạng Phép" },
+    { "key": "armor", "value": "Giáp" },
+    { "key": "physicRes", "value": "Kháng Vật Lý" },
+    { "key": "magicRes", "value": "Giáp Phép" },
+    { "key": "cooldownReduction", "value": "Giảm Thời Gian Hồi Chiêu" },
+    { "key": "durability", "value": "Độ Bền" }
   ]
 }

@@ -45,6 +45,18 @@ public class LocalizationManager
                     localizedText[entry.key] = entry.value;
                 }
                 break;
+            case "itemButton":
+                foreach (var entry in data.itemButton)
+                {
+                    localizedText[entry.key] = entry.value;
+                }
+                break;
+            case "itemStats":
+                foreach (var entry in data.itemStats)
+                {
+                    localizedText[entry.key] = entry.value;
+                }
+                break;
         }
         
 
