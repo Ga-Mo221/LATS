@@ -39,6 +39,9 @@ public class PlayerController : MonoBehaviour
     private float _originalGravity;
 
 
+    // Player Detected
+    private Coroutine _resetDetected;
+
     void Start()
     {
         if (!_rb)
@@ -70,7 +73,27 @@ public class PlayerController : MonoBehaviour
             handleDash();
         }
         handleAttack();
+
+        if (PlayerManager.Instance.getIsAlive())
+        {
+            _anim.setBoolPlayerDetected(PlayerManager.Instance.getPlayerDetected());
+            if (PlayerManager.Instance.getPlayerDetected())
+            {
+                if (_resetDetected != null)
+                    StopCoroutine(_resetDetected);
+                _resetDetected = StartCoroutine(resetDetectedState());
+            }
+        }
     }
+
+
+    #region Reset Player Detected
+    private IEnumerator resetDetectedState()
+    {
+        yield return new WaitForSeconds(3f);
+        PlayerManager.Instance.setPlayerDetected(false);
+    }
+    #endregion
 
 
     #region Update Is A Live

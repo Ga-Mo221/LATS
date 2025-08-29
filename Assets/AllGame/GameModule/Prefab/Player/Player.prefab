@@ -203,6 +203,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackID: 1
   BonusDamagePercent: 0
+  _bounusmana: 10
+  _dotKich: 0
 --- !u!1 &2322828412798487698
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,6 +304,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackID: 1
   BonusDamagePercent: 10
+  _bounusmana: 10
+  _dotKich: 0
 --- !u!1 &2510439242589459611
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,7 +394,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1833563889
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: af4de483150695f48867327fd841ae89, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -632,7 +636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 1490421335622021078}
-  _colliderMaterial: {fileID: 0}
+  _colliderMaterial: {fileID: 5490474627115411792}
 --- !u!1 &2729731275110184638
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,7 +708,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3774141912294483128}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -764,6 +768,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackID: 2
   BonusDamagePercent: 100
+  _bounusmana: 10
+  _dotKich: 0
 --- !u!1 &3938458095641853033
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,6 +953,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackID: 2
   BonusDamagePercent: 0
+  _bounusmana: 10
+  _dotKich: 0
 --- !u!1 &5662278506586077607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,6 +1169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackID: 2
   BonusDamagePercent: 30
+  _bounusmana: 10
+  _dotKich: 0
 --- !u!1 &7618865532437143518
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,3 +1339,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackID: 1
   BonusDamagePercent: 20
+  _bounusmana: 10
+  _dotKich: 0

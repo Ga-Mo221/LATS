@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [System.Serializable]
@@ -205,9 +206,13 @@ public class PlayerStarts
             if (_currentLifeCount > 0)
             {
                 _currentLifeCount--;
-                _currentHealth = _maxHealth;
             }
         }
+    }
+    public void resetHealthAndMana()
+    {
+        _currentHealth = _maxHealth;
+        PlayerManager.Instance.setStamina(_stamina);
     }
     #endregion
 }

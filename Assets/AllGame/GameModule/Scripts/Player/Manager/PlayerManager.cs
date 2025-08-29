@@ -36,6 +36,7 @@ public class PlayerManager : MonoBehaviour
 
     // player state
     //private bool _canMoveAttack = false;
+    private bool _isDetected = false;
     private bool _isAlive = true; // còn sống
     private bool _knocked = false; // bị trúng đòn
     // canattack sẽ chạy ở hàm update để kiểm tra trong AnimatorController có weapon type = 0 hay không?
@@ -79,6 +80,7 @@ public class PlayerManager : MonoBehaviour
             transform.position = _start._StartPoint;
             _isAlive = true;
             _knocked = false;
+            _isDetected = false;
             _stamina = _start._stamina;
             _dashTime = _start._dashingCooldown;
         }
@@ -239,5 +241,12 @@ public class PlayerManager : MonoBehaviour
     #region Destroy Player
     public void destroyPlayer()
         => Destroy(gameObject);
+    #endregion
+
+
+    #region Player Detected
+    public void setPlayerDetected(bool amount) => _isDetected = amount;
+
+    public bool getPlayerDetected() => _isDetected; 
     #endregion
 }

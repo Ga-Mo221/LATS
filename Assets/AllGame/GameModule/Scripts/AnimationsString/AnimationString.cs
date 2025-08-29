@@ -14,6 +14,15 @@ internal class AnimationString
     internal static string _isAttack = "IsAttack";
     internal static string _weaponType = "WeaponType";
     internal static string _isAlive = "IsALive";
+    internal static string _isDetected = "IsDetected";
 
-    // Enemy
+    // =====================
+    // Enemy (dùng chung cho các EnemyBase, LeThuyNhan,...)
+    // =====================
+    internal static string _enemyIsWalking = "isWalking";
+    internal static string _enemyIsDead = "isDead";
+    internal static string _enemyIsAttack = "isAttack";
+    internal static string _enemyIsHurt = "isHurt";
+    internal static string _enemyIsPatrol = "isPatrol";
+    internal static string _enemyIsStay = "isStay";
 }

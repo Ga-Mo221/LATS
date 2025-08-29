@@ -91,4 +91,10 @@ public class PlayerAnimation : MonoBehaviour
     public void setTriggerAttack()
         => _anim.SetTrigger(AnimationString._isAttack);
     #endregion
+
+
+    #region Set Bool Player Detected
+    public void setBoolPlayerDetected(bool amount)
+        => _anim.SetBool(AnimationString._isDetected, amount);
+    #endregion
 }
