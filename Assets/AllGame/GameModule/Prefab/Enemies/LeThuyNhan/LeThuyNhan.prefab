@@ -316,7 +316,7 @@ MonoBehaviour:
   _isPatrol: 1
   _isStay: 0
   _patrolWaitDuration: 3
-  _knockbackForce: 2
+  _knockbackForce: 10
   _knockbackDuration: 0.5
   _attackCooldown: 1
   _attackAnimationDuration: 0.8

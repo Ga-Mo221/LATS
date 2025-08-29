@@ -7,6 +7,8 @@ public class LocalizationData
     public List<LocalizedText> menu;
     public List<LocalizedText> gameOption;
     public List<LocalizedText> gameOver;
+    public List<LocalizedText> itemButton;
+    public List<LocalizedText> itemStats;
 }
 
 [System.Serializable]

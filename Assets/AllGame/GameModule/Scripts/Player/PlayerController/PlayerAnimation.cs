@@ -97,4 +97,10 @@ public class PlayerAnimation : MonoBehaviour
     public void setBoolPlayerDetected(bool amount)
         => _anim.SetBool(AnimationString._isDetected, amount);
     #endregion
+
+
+    #region set Float Attack Speed
+    public void setFloadAttackSpeed(float amount)
+        => _anim.SetFloat(AnimationString._attackSpeed, amount);
+    #endregion
 }

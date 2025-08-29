@@ -35,5 +35,40 @@
     { "key": "gameover", "value": "Game over" },
     { "key": "continue", "value": "CONTINUE" },
     { "key": "exit", "value": "MENU" }
+  ],
+
+  "itemButton":[
+    { "key": "use", "value": "Use" },
+    { "key": "equie", "value": "Equie" },
+    { "key": "reqair", "value": "Repair" },
+    { "key": "sell", "value": "sell" },
+    { "key": "delete", "value": "delete" }
+  ],
+
+  "itemStats":[
+    { "key": "name", "value": "Name" },
+    { "key": "weaponType", "value": "Type: Weapon" },
+    { "key": "helmetType", "value": "Type: Helmet" },
+    { "key": "armorType", "value": "Type: Armor" },
+    { "key": "bootsType", "value": "Type: Boots" },
+    { "key": "accessoryType", "value": "Type: Accessory" },
+    { "key": "consumableType", "value": "Type: Consumable" },
+    { "key": "rarityCommon", "value": "Rarity: Common" },
+    { "key": "rarityRare", "value": "Rarity: Rare" },
+    { "key": "rarityLegendary", "value": "Rarity: Legendary" },
+    { "key": "weaponMelee", "value": "Weapon Type: Melee" },
+    { "key": "weaponRanged", "value": "Weapon Type: Ranged" },
+    { "key": "physicalDamage", "value": "Physical Damage" },
+    { "key": "magicDamage", "value": "Magic Damage" },
+    { "key": "attackSpeed", "value": "Attack Speed" },
+    { "key": "moveSpped", "value": "Move Speed" },
+    { "key": "health", "value": "Health" },
+    { "key": "critPhysical", "value": "Crit Chance (Physical)" },
+    { "key": "critMagic", "value": "Crit Chance (Magic)" },
+    { "key": "armor", "value": "Armor" },
+    { "key": "physicRes", "value": "Physical Resist" },
+    { "key": "magicRes", "value": "Magic Resist" },
+    { "key": "cooldownReduction", "value": "Cooldown Reduction" },
+    { "key": "durability", "value": "Durability" }
   ]
 }

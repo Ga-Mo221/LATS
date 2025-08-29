@@ -507,6 +507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerHealth: {fileID: 2456811430465164310}
   _rada: {fileID: 1892304185208733534}
+  _anim: {fileID: 106344547719849404}
   _start:
     _StartPoint: {x: 0, y: 0, z: 0}
     _level: 0

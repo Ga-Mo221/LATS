@@ -342,7 +342,7 @@ public abstract class EnemyBase : MonoBehaviour
             PlayerState state = PlayerManager.Instance.getCurrentState();
 
             // Nếu player đang ngồi hoặc đột kích thì KHÔNG phát hiện
-            if (state == PlayerState.Sit || state == PlayerState.Sit_Walk || state == PlayerState.DotKich)
+            if (state == PlayerState.Sit || state == PlayerState.Sit_Walk || state == PlayerState.Ground_Attack)
             {
                 return false;
             }
@@ -618,7 +618,6 @@ public abstract class EnemyBase : MonoBehaviour
         if (_currentDeathCount > _maxDeathCount)
         {
             // Chết vĩnh viễn - destroy object
-            _animator.SetBool("isDead", true);
             _rb.linearVelocity = Vector2.zero;
             _rb.bodyType = RigidbodyType2D.Kinematic;
             _rb.simulated = false;
@@ -629,11 +628,9 @@ public abstract class EnemyBase : MonoBehaviour
         else
         {
             // Chết tạm thời - sẽ respawn
-            _animator.SetBool("isDead", true);
             _rb.linearVelocity = Vector2.zero;
             _rb.bodyType = RigidbodyType2D.Kinematic; // Không tương tác physics
             _rb.simulated = false;
-            GetComponent<SpriteRenderer>().enabled = false; // Ẩn sprite
 
             // Vô hiệu hóa collider
             Collider2D col = GetComponent<Collider2D>();
@@ -702,8 +699,7 @@ public abstract class EnemyBase : MonoBehaviour
         Collider2D col = GetComponent<Collider2D>();
         if (col != null) col.enabled = true;
 
-        // Reset animator
-        _animator.SetBool("isDead", false);
+
 
         // Về lại vị trí patrol ban đầu
         transform.position = _patrolStartPos;

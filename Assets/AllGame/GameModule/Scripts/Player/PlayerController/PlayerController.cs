@@ -314,9 +314,9 @@ public class PlayerController : MonoBehaviour
                 else if (_playerInput._isMoving)
                     PlayerManager.Instance.setCurrentState(PlayerState.Walk);
                 else if (_playerInput._isSiting)
-                    PlayerManager.Instance.setCurrentState(PlayerState.Sit);
-                else
-                    PlayerManager.Instance.setCurrentState(PlayerState.Idle);
+                            PlayerManager.Instance.setCurrentState(PlayerState.Sit);
+                        else
+                            PlayerManager.Instance.setCurrentState(PlayerState.Idle);
             }
         }
         else

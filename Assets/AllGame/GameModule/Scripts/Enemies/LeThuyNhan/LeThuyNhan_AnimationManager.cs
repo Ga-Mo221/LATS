@@ -11,7 +11,6 @@ public class LeThuyNhan_AnimationManager : MonoBehaviour
     
     // Cache animation states để tránh set liên tục
     private bool _lastWalkingState = false;
-    private bool _lastDeadState = false;
 
     #region Initialization
     private void Awake()
@@ -69,17 +68,13 @@ public class LeThuyNhan_AnimationManager : MonoBehaviour
     /// Set dead animation state
     /// </summary>
     /// <param name="isDead">Enemy có chết không</param>
-    public void setDeadAnimation(bool isDead)
+    public void setDeadAnimation()
     {
         if (_animator == null) return;
-        
-        if (isDead != _lastDeadState)
-        {
-            _animator.SetBool(AnimationString._enemyIsDead, isDead); 
-            _lastDeadState = isDead;
-        }
+            _animator.SetTrigger(AnimationString._enemyIsDead);
+            Debug.Log("[LeThuyNhan_AnimationManager] Triggering isDead animation");
     }
-    
+
     /// <summary>
     /// Reset tất cả animation states về mặc định
     /// Dùng khi respawn hoặc init
@@ -87,17 +82,16 @@ public class LeThuyNhan_AnimationManager : MonoBehaviour
     public void resetAllAnimations()
     {
         if (_animator == null) return;
-        
+
         _animator.SetBool(AnimationString._enemyIsWalking, false);
-        _animator.SetBool(AnimationString._enemyIsDead, false);
-        
+
         // Reset cache states
         _lastWalkingState = false;
-        _lastDeadState = false;
-        
+
         // Reset trigger để tránh bị stuck anim
         _animator.ResetTrigger(AnimationString._enemyIsAttack);
         _animator.ResetTrigger(AnimationString._enemyIsHurt);
+        _animator.ResetTrigger(AnimationString._enemyIsDead);
     }
     
     /// <summary>

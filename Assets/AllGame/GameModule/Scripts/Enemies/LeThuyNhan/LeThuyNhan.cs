@@ -15,11 +15,11 @@ public class LeThuyNhan : EnemyBase
     private bool _canAttack = true;
     private bool _isLive = true;
     private bool _isInAttackCooldown = false;
-    
+
     // Timers
     private float _stateTimer = 0f;
     private Coroutine _currentStateCoroutine;
-    
+
     // Animation Manager
     private LeThuyNhan_AnimationManager _animationManager;
     #endregion
@@ -29,7 +29,7 @@ public class LeThuyNhan : EnemyBase
     {
         base.Awake();
         _canFly = false;
-        
+
         // Lấy reference đến Animation Manager
         _animationManager = GetComponent<LeThuyNhan_AnimationManager>();
         if (_animationManager == null)
@@ -39,10 +39,10 @@ public class LeThuyNhan : EnemyBase
     protected override void Update()
     {
         if (!_isLive) return;
-        
+
         // GỌI base.Update() TRƯỚC để đảm bảo detectPlayer() chạy
         base.Update();
-        
+
         UpdateStateTimer();
         CheckForAttack();
         UpdateAnimations();
@@ -69,7 +69,7 @@ public class LeThuyNhan : EnemyBase
     {
         return _isAttacking || _isHurt || _isKnockedBack;
     }
-    
+
     private void StopMovement()
     {
         if (_rb != null)
@@ -78,7 +78,7 @@ public class LeThuyNhan : EnemyBase
             _isMoving = false;
         }
     }
-        
+
     private void UpdateStateTimer()
     {
         if (_stateTimer > 0f)
@@ -97,41 +97,41 @@ public class LeThuyNhan : EnemyBase
     private void CheckForAttack()
     {
         if (!CanInitiateAttack()) return;
-        
+
         float distanceToPlayer = Vector2.Distance(transform.position, _player.transform.position);
         if (distanceToPlayer <= _enemyAttackRange * 1.1f)
         {
             InitiateAttack();
         }
     }
-    
+
     private bool CanInitiateAttack()
     {
-        return _player != null && 
-               _isLive && 
-               _canAttack && 
-               !_isAttacking && 
-               !_isHurt && 
+        return _player != null &&
+               _isLive &&
+               _canAttack &&
+               !_isAttacking &&
+               !_isHurt &&
                !_isKnockedBack &&
                !_isInAttackCooldown;
     }
-    
+
     private void InitiateAttack()
     {
         Debug.Log("[LeThuyNhan] Initiating attack");
-        
+
         _isAttacking = true;
         _canAttack = false;
         _stateTimer = _attackAnimationDuration;
-        
+
         if (_rb != null)
         {
             _rb.linearVelocity = new Vector2(0, _rb.linearVelocity.y);
             _isMoving = false;
         }
-        
+
         FacePlayer();
-        
+
         // Sử dụng Animation Manager thay vì truy cập animator trực tiếp
         if (_animationManager != null)
             _animationManager.triggerAttackAnimation();
@@ -139,23 +139,23 @@ public class LeThuyNhan : EnemyBase
         if (_currentStateCoroutine != null)
             StopCoroutine(_currentStateCoroutine);
     }
-    
+
     private void EndAttack()
     {
         Debug.Log("[LeThuyNhan] Ending attack");
         _isAttacking = false;
         _stateTimer = 0f;
-        
+
         // Start attack cooldown
         StartAttackCooldown();
     }
-    
+
     private void StartAttackCooldown()
     {
         _isInAttackCooldown = true;
         _currentStateCoroutine = StartCoroutine(AttackCooldownCoroutine());
     }
-    
+
     private IEnumerator AttackCooldownCoroutine()
     {
         yield return new WaitForSeconds(_attackCooldown);
@@ -167,7 +167,7 @@ public class LeThuyNhan : EnemyBase
         }
         _currentStateCoroutine = null;
     }
-    
+
     protected override void Attack()
     {
         if (!_isLive || _player == null) return;
@@ -223,30 +223,30 @@ public class LeThuyNhan : EnemyBase
     public override void takeDamage()
     {
         if (!_isLive) return;
-        
+
         Debug.Log("[LeThuyNhan] Taking damage");
-        
+
         base.takeDamage();
-        
+
         _isHurt = true;
         _stateTimer = _hurtAnimationDuration;
-        
+
         // Nếu đang attack thì hủy attack
         if (_isAttacking)
         {
             _isAttacking = false;
         }
-        
+
         if (_rb != null)
         {
             _rb.linearVelocity = new Vector2(0, _rb.linearVelocity.y);
             _isMoving = false;
         }
-        
+
         // Sử dụng Animation Manager
         if (_animationManager != null)
             _animationManager.triggerHurtAnimation();
-        
+
         // Chỉ stop coroutine attack, không stop cooldown
         if (_currentStateCoroutine != null && !_isInAttackCooldown)
         {
@@ -254,7 +254,7 @@ public class LeThuyNhan : EnemyBase
             _currentStateCoroutine = null;
         }
     }
-    
+
     private void EndHurt()
     {
         Debug.Log("[LeThuyNhan] Ending hurt state");
@@ -286,10 +286,7 @@ public class LeThuyNhan : EnemyBase
             _currentStateCoroutine = null;
         }
 
-        // Sử dụng Animation Manager
-        if (_animationManager != null)
-            _animationManager.setDeadAnimation(true);
-
+        _animationManager.setDeadAnimation();
         base.Die();
 
         // Chest logic nếu có
@@ -303,7 +300,7 @@ public class LeThuyNhan : EnemyBase
     public override void respawn()
     {
         Debug.Log("[LeThuyNhan] Respawning");
-        
+
         // Reset biến AI riêng của LeThuyNhan TRƯỚC KHI gọi base
         _isLive = true;
         _canAttack = true;
@@ -311,17 +308,17 @@ public class LeThuyNhan : EnemyBase
         _isHurt = false;
         _isInAttackCooldown = false;
         _stateTimer = 0f;
-        
+
         // Dọn dẹp coroutine cũ
         if (_currentStateCoroutine != null)
         {
             StopCoroutine(_currentStateCoroutine);
             _currentStateCoroutine = null;
         }
-        
+
         // Gọi base respawn
         base.respawn();
-        
+
         // Reset animations thông qua Animation Manager
         if (_animationManager != null)
         {
@@ -334,11 +331,11 @@ public class LeThuyNhan : EnemyBase
     private void UpdateAnimations()
     {
         if (_animationManager == null || !_isLive) return;
-        
+
         // Cập nhật walking animation thông qua Animation Manager
         _animationManager.updateWalkingAnimation(_isMoving, _isAttacking, _isHurt, _isKnockedBack);
     }
-    
+
     private void FacePlayer()
     {
         if (_player == null) return;
@@ -350,11 +347,11 @@ public class LeThuyNhan : EnemyBase
             transform.localScale = scale;
         }
     }
-    
+
     #endregion
 
     #region Animation Events (called from Animation Manager)
-    
+
     /// <summary>
     /// Được gọi từ Animation Manager khi attack animation đến frame gây damage
     /// </summary>
@@ -362,7 +359,7 @@ public class LeThuyNhan : EnemyBase
     {
         Attack();
     }
-    
+
     /// <summary>
     /// Được gọi từ Animation Manager khi attack animation kết thúc
     /// </summary>
@@ -373,7 +370,7 @@ public class LeThuyNhan : EnemyBase
             EndAttack();
         }
     }
-    
+
     /// <summary>
     /// Được gọi từ Animation Manager khi hurt animation kết thúc
     /// </summary>
@@ -384,6 +381,11 @@ public class LeThuyNhan : EnemyBase
             EndHurt();
         }
     }
-    
+
     #endregion
+
+    public void SpriteEnabled()
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
+    }
 }

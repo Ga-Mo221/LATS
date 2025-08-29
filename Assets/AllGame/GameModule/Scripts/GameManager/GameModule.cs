@@ -22,4 +22,8 @@ public class GameModule : MonoBehaviour
     [SerializeField] public GameObject _gameOptionPrefab;
     [SerializeField] public GameObject _gameOverPrefab;
     [SerializeField] public GameObject _IntroPrefab;
+    [SerializeField] public GameObject _ItemPrefab;
+    [SerializeField] public GameObject _InventoryPrefab;
+    [SerializeField] public GameObject _contextMenuPrefab;
+    [SerializeField] public GameObject _itemStatPrefab;
 }
