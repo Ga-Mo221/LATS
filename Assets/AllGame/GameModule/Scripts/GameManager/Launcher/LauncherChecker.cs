@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +8,7 @@ public class LauncherChecker : MonoBehaviour
     [SerializeField]
     private bool isEnableCheck = true;
 
-    void Awake()
+    void Start()
     {
 #if UNITY_EDITOR
         if (!isEnableCheck) return;
@@ -19,7 +20,7 @@ public class LauncherChecker : MonoBehaviour
             if (arg == "-launch_by_launcher")
             {
                 hasLauncherFlag = true;
-                SceneManager.LoadScene("GameMenu");
+                StartCoroutine(LoadSecene());
                 break;
             }
         }
@@ -33,5 +34,11 @@ public class LauncherChecker : MonoBehaviour
             Application.Quit();
 #endif
         }
+    }
+
+    private IEnumerator LoadSecene()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene("GameMenu");
     }
 }

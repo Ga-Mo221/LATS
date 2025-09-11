@@ -338,6 +338,7 @@ GameObject:
   - component: {fileID: 3403090783155314302}
   - component: {fileID: 2417966492241871879}
   - component: {fileID: 5058453226875165182}
+  - component: {fileID: 826120513558299957}
   m_Layer: 5
   m_Name: Intro
   m_TagString: Untagged
@@ -459,6 +460,18 @@ MonoBehaviour:
   _teamName_L1: {fileID: 7697708205278463941}
   _teamName_L2: {fileID: 1799270276189305531}
   _load: {fileID: 1864220939710433065}
+--- !u!114 &826120513558299957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3726558453063871437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0d22b1e02c8590479964f79c7e6c900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3758152330274945919
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,8 @@ public class LocalizationData
     public List<LocalizedText> gameOver;
     public List<LocalizedText> itemButton;
     public List<LocalizedText> itemStats;
+    public List<LocalizedText> playerStats;
+    public List<LocalizedText> quitGame;
 }
 
 [System.Serializable]

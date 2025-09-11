@@ -635,9 +635,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 637658187}
+  - component: {fileID: 637658184}
   - component: {fileID: 637658186}
   - component: {fileID: 637658185}
-  - component: {fileID: 637658184}
+  - component: {fileID: 637658188}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -663,6 +664,11 @@ MonoBehaviour:
   _gameOptionPrefab: {fileID: 923536451131583947, guid: 4f3c44053cd52804a99fc0f207818529, type: 3}
   _gameOverPrefab: {fileID: 8994783650497481788, guid: 45f48a776b98ce6488b52c65ab9b4e7e, type: 3}
   _IntroPrefab: {fileID: 3726558453063871437, guid: b501e519ad3594846a62f287daa6dfd6, type: 3}
+  _ItemPrefab: {fileID: 5177922135699524118, guid: fc20066d12215b34da62b622ea78a606, type: 3}
+  _InventoryPrefab: {fileID: 1860579702501700796, guid: f98dd2b33ed5f9d41bfe7c060c9bec70, type: 3}
+  _contextMenuPrefab: {fileID: 4340589708931851505, guid: 5a2a8aff00de82f4fa5be58686970763, type: 3}
+  _itemStatPrefab: {fileID: 6738357225347645941, guid: f0a2ecc23b07f3d43b2953c5a2c3b160, type: 3}
+  _quitGameUIPrefab: {fileID: 3196802962829183535, guid: faab90e49bed37f499dc7483ceb5da8b, type: 3}
 --- !u!114 &637658185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -721,6 +727,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &637658188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637658183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fafd59ca76203444b7f74b99a948c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &715666799 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3931808693662951188, guid: 0796c66a81f268b499cfc6b90829772a, type: 3}

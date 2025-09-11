@@ -51,28 +51,18 @@ public class InventoryManager : MonoBehaviour
     public bool _consumableCreateItem { get; set; } = false;
 
 
-    [Header("GameObject")]
-    public GameObject _itemStats;
-    public ItemStatsWindown _itemStatsWindown;
-    public GameObject _itemContextMenu;
-    public ConTextMenuItem _itemContextMenuItem;
+    public GameObject _itemStats { get; set; }
+    public ItemStatsWindown _itemStatsWindown { get; set; }
+    public GameObject _itemContextMenu { get; set; }
+    public ConTextMenuItem _itemContextMenuItem { get; set; }
+    public TextMeshProUGUI _itemStatsText { get; set; }
+    public Slider _durabilitySlider { get; set; }
+
+    public bool _isOpen { get; set; } = false;
 
 
     [Header("References")]
     public bool _show = false;
-    [ShowIf(nameof(_show))]
-    [SerializeField] public InventoryWeapon _inventoryWeapon;
-    [ShowIf(nameof(_show))]
-    [SerializeField] private InventoryHelmet _inventoryHelmet;
-    [ShowIf(nameof(_show))]
-    [SerializeField] private InventoryArmor _inventoryArmor;
-    [ShowIf(nameof(_show))]
-    [SerializeField] private InventoryBoots _inventoryBoots;
-    [ShowIf(nameof(_show))]
-    [SerializeField] private InventoryAccessory _inventoryAccessory;
-    [ShowIf(nameof(_show))]
-    [SerializeField] private InventoryConsumable _inventoryConsumable;
-
     [ShowIf(nameof(_show))]
     [SerializeField] private SaveItem _saveItem;
     [ShowIf(nameof(_show))]
@@ -80,37 +70,49 @@ public class InventoryManager : MonoBehaviour
     [ShowIf(nameof(_show))]
     [SerializeField] public GameObject _itemStats_Overlay;
     [ShowIf(nameof(_show))]
-    [SerializeField] public TextMeshProUGUI _itemStatsText;
+    [SerializeField] private InventoryRight _inventoryRight;
     [ShowIf(nameof(_show))]
-    [SerializeField] public Slider _durabilitySlider;
-
+    [SerializeField] public Transform _inventoryRightPos;
+    [ShowIf(nameof(_show))]
+    [SerializeField] private DisplayItemsEquie _displayItemsEquie;
+    [ShowIf(nameof(_show))]
+    [SerializeField] private LoadPlayerStatsToText _loadPlayerStats;
+    [ShowIf(nameof(_show))]
+    [SerializeField] private GameObject _playerEquieItems;
+    [ShowIf(nameof(_show))]
+    [SerializeField] private GameObject _BG;
+    [ShowIf(nameof(_show))]
+    [SerializeField] private GetMainCam _cameraPlayerEquip;
+    [ShowIf(nameof(_show))]
+    [SerializeField] private GetMainCam _cameraBG;
+    [ShowIf(nameof(_show))]
+    [SerializeField] private GetMainCam _cameraOverlay;
     #endregion
 
 
     void Start()
     {
+        if (!_BG)
+            Debug.LogError("[InventoryManager] Chưa gán 'GameObject BG'");
+        if (!_playerEquieItems)
+            Debug.LogError("[InventoryManager] Chưa gán 'GameObject PlayerEquieItems'");
         if (!_saveItem)
             Debug.LogError("[InventoryManager] Chưa gán 'SaveItem'");
         if (!_contextMenu_Overlay)
             Debug.LogError("[InventoryManager] Chưa gán 'GameObject _contextMenu_Overlay'");
         if (!_itemStats_Overlay)
             Debug.LogError("[InventoryManager] Chưa gán 'GameObject _itemStats_Overlay'");
-        if (!_inventoryWeapon)
-            Debug.LogError("[InventoryManager] Chưa gán 'InventoryWeapon'");
-        if (!_inventoryHelmet)
-            Debug.LogError("[InventoryManager] Chưa gán 'InventoryHelmet'");
-        if (!_inventoryArmor)
-            Debug.LogError("[InventoryManager] Chưa gán 'InventoryArmor'");
-        if (!_inventoryBoots)
-            Debug.LogError("[InventoryManager] Chưa gán 'InventoryBoots'");
-        if (!_inventoryAccessory)
-            Debug.LogError("[InventoryManager] Chưa gán 'InventoryAccessory'");
-        if (!_inventoryConsumable)
-            Debug.LogError("[InventoryManager] Chưa gán 'InventoryConsumable'");
-        if (!_itemStatsText)
-            Debug.LogError("[InventoryManager] Chưa gán 'TextMeshProUGUI _itemStatsText'");
-        if (!_durabilitySlider)
-            Debug.LogError("[InventoryManager] Chưa gán 'Slider _durabilitySlider'");
+        if (!_inventoryRight)
+            Debug.LogError("[InventoryManager] Chưa gán 'InventoryRight _inventoryRight'");
+        if (!_inventoryRightPos)
+            Debug.LogError("[InventoryManager] Chưa gán 'Transform _inventoryRightPos'");
+        if (!_displayItemsEquie)
+            Debug.LogError("[InventoryManager] Chưa gán 'DisplayItemsEquie _displayItemsEquie'");
+        if (!_loadPlayerStats)
+            Debug.LogError("[InventoryManager] Chưa gán 'LoadPlayerStatsToText'");
+
+        _itemStatsText = _inventoryRight._itemStatsText;
+        _durabilitySlider = _inventoryRight._durabilitySlider;
 
         foreach (var item in InventoryManager.Instance._allItems)
         {
@@ -313,13 +315,98 @@ public class InventoryManager : MonoBehaviour
     #endregion
 
 
+    #region Remove Items In List
+    public void removeItemInList(RtItem rtItem)
+    {
+        switch (rtItem._baseItem._itemType)
+        {
+            case ItemType.Weapon:
+                {
+                    for (int i = 0; i < _rtItemsWeapon.Count; i++)
+                    {
+                        if (_rtItemsWeapon[i] == rtItem)
+                        {
+                            _rtItemsWeapon.RemoveAt(i);
+                            break;
+                        }
+                    }
+                    break;
+                }
+            case ItemType.Helmet:
+                {
+                    for (int i = 0; i < _rtItemsHelmet.Count; i++)
+                    {
+                        if (_rtItemsHelmet[i] == rtItem)
+                        {
+                            _rtItemsHelmet.RemoveAt(i);
+                            break;
+                        }
+                    }
+                    break;
+                }
+            case ItemType.Armor:
+                {
+                    for (int i = 0; i < _rtItemsArmor.Count; i++)
+                    {
+                        if (_rtItemsArmor[i] == rtItem)
+                        {
+                            _rtItemsArmor.RemoveAt(i);
+                            break;
+                        }
+                    }
+                    break;
+                }
+            case ItemType.Boots:
+                {
+                    for (int i = 0; i < _rtItemsBoots.Count; i++)
+                    {
+                        if (_rtItemsBoots[i] == rtItem)
+                        {
+                            _rtItemsBoots.RemoveAt(i);
+                            break;
+                        }
+                    }
+                    break;
+                }
+            case ItemType.Accessory:
+                {
+                    for (int i = 0; i < _rtItemsAccesory.Count; i++)
+                    {
+                        if (_rtItemsAccesory[i] == rtItem)
+                        {
+                            _rtItemsAccesory.RemoveAt(i);
+                            break;
+                        }
+                    }
+                    break;
+                }
+            case ItemType.Consumable:
+                {
+                    for (int i = 0; i < _rtItemsConsumahble.Count; i++)
+                    {
+                        if (_rtItemsConsumahble[i] == rtItem)
+                        {
+                            _rtItemsConsumahble.RemoveAt(i);
+                            break;
+                        }
+                    }
+                    break;
+                }
+        }
+        displayInventory(rtItem);
+    }
+    #endregion
+
+
     #region Equip Item
     public void equip(RtItem item)
     {
         _equipedItem.equip(item);
         displayInventory(item);
-        // DisplayEquipedIetm();
+        _displayItemsEquie.display();
         applyItem(item, true);
+        _loadPlayerStats.display();
+        Debug.Log("[InventoryManager] Đã Trang Bị: " + item._baseItem._itemName);
     }
     #endregion
 
@@ -329,8 +416,10 @@ public class InventoryManager : MonoBehaviour
     {
         _equipedItem.unEquip(item);
         displayInventory(item);
-        // DisplayEquipedIetm();
+        _displayItemsEquie.display();
         applyItem(item, false);
+        _loadPlayerStats.display();
+        Debug.Log("[InventoryManager] Đã Gỡ Trang Bị: " + item._baseItem._itemName);
     }
     #endregion
 
@@ -338,39 +427,7 @@ public class InventoryManager : MonoBehaviour
     #region Display Inventory
     private void displayInventory(RtItem item)
     {
-        switch (item._baseItem._itemType)
-        {
-            case ItemType.Weapon:
-                {
-                    _inventoryWeapon.displayItemInInventory();
-                    break;
-                }
-            case ItemType.Helmet:
-                {
-                    _inventoryHelmet.displayItemInInventory();
-                    break;
-                }
-            case ItemType.Armor:
-                {
-                    _inventoryArmor.displayItemInInventory();
-                    break;
-                }
-            case ItemType.Boots:
-                {
-                    _inventoryBoots.displayItemInInventory();
-                    break;
-                }
-            case ItemType.Accessory:
-                {
-                    _inventoryAccessory.displayItemInInventory();
-                    break;
-                }
-            case ItemType.Consumable:
-                {
-                    _inventoryConsumable.displayItemInInventory();
-                    break;
-                }
-        }
+        _inventoryRight.display(item);
     }
     #endregion
 
@@ -429,9 +486,6 @@ public class InventoryManager : MonoBehaviour
     #region Add Item In Inventory UI
     public void addItemInInventory(RtItem item, GameObject obj)
     {
-        var _imgItem = obj.GetComponent<ItemUiController>()._itemIcon;
-        _imgItem.sprite = item._baseItem._itemIcon;
-        _imgItem.enabled = true;
         obj.GetComponent<ItemUiController>().setRtItem(item);
     }
     #endregion
@@ -440,10 +494,31 @@ public class InventoryManager : MonoBehaviour
     #region Remove Item In Inventory UI
     public void removeItemInInventory(RtItem item, GameObject obj)
     {
-        var _imgItem = obj.GetComponent<ItemUiController>()._itemIcon;
-        _imgItem.sprite = null;
-        _imgItem.enabled = false;
         obj.GetComponent<ItemUiController>().setRtItem(null);
     }
+    #endregion
+
+
+    #region Active inventory
+    public void setActive(bool amount)
+    {
+        setActiveInventoryRight(amount, _inventoryRightPos.position);
+        setActivePlayerEquipItems(amount);
+        _BG.SetActive(amount);
+        _displayItemsEquie.loadLanguage();
+        _isOpen = amount;
+    }
+    public void setActiveInventoryRight(bool amount, Vector3 pos)
+    {
+        _inventoryRight.setActiveInventory(amount, pos);
+    }
+    public void setActivePlayerEquipItems(bool amount)
+    {
+        _playerEquieItems.SetActive(amount);
+        _cameraBG.setupCamera();
+        _cameraOverlay.setupCamera();
+        _cameraPlayerEquip.setupCamera();
+    }
+    public bool getActiveInventoryRight() => _inventoryRight.getActiveInventory();
     #endregion
 }

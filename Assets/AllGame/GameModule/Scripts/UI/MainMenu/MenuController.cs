@@ -26,7 +26,6 @@ public class MenuController : MonoBehaviour
     {
         _mainMenuButtons.SetActive(false);
         GameManager.Instance._loadlanguageSetting.loadLanguage();
-        GameManager.Instance._getMainCameraSetting.setupCamera();
         GameManager.Instance._setting.SetActive(true);
         GameManager.Instance._canOpenWindown = false;
         SettingController _settingClose = GameManager.Instance._setting.GetComponent<SettingController>();

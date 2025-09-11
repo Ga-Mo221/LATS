@@ -78,7 +78,7 @@ public class RtItem
     public float _bonusPhysicRes = 0f;
     public float _bonusMagicResist = 0f;
     public float _bonusCooldownReduction = 0f; // giảm thời gian hồi chiêu
-    public float _currentDurability; // Độ bền hiện tại
+    public float _currentDurability = 100f;
 
     [System.NonSerialized]
     public Item _baseItem;
@@ -144,35 +144,35 @@ public class EquipedItem
         switch (item._baseItem._itemType)
         {
             case ItemType.Helmet:
-                if (item._currentDurability >= 100) return;
+                if (item._currentDurability <= 0) return;
                 if (_helmet != null) unEquip(item);
                 _helmet = item;
                 item._itemStatus = ItemStatus.Equip;
                 _isHelmet = true;
                 break;
             case ItemType.Armor:
-                if (item._currentDurability >= 100) return;
+                if (item._currentDurability <= 0) return;
                 if (_armor != null) unEquip(item);
                 _armor = item;
                 item._itemStatus = ItemStatus.Equip;
                 _isArmor = true;
                 break;
             case ItemType.Boots:
-                if (item._currentDurability >= 100) return;
+                if (item._currentDurability <= 0) return;
                 if (_boots != null) unEquip(item);
                 _boots = item;
                 item._itemStatus = ItemStatus.Equip;
                 _isBoots = true;
                 break;
             case ItemType.Accessory:
-                if (item._currentDurability >= 100) return;
+                if (item._currentDurability <= 0) return;
                 if (_accessory != null) unEquip(item);
                 _accessory = item;
                 item._itemStatus = ItemStatus.Equip;
                 _isAccesory = true;
                 break;
             case ItemType.Weapon:
-                if (item._currentDurability >= 100) return;
+                if (item._currentDurability <= 0) return;
                 if (item._baseItem._weaponType == WeaponType.Melee)
                 {
                     if (_MeleeWeapon != null) unEquip(item);

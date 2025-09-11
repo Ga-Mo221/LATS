@@ -39,7 +39,8 @@
 
   "itemButton":[
     { "key": "use", "value": "Use" },
-    { "key": "equie", "value": "Equie" },
+    { "key": "unequie", "value": "Unequip" },
+    { "key": "equie", "value": "Equip" },
     { "key": "reqair", "value": "Repair" },
     { "key": "sell", "value": "sell" },
     { "key": "delete", "value": "delete" }
@@ -70,5 +71,28 @@
     { "key": "magicRes", "value": "Magic Resist" },
     { "key": "cooldownReduction", "value": "Cooldown Reduction" },
     { "key": "durability", "value": "Durability" }
+  ],
+
+  "playerStats":[
+    { "key": "level", "value": "Level" },
+    { "key": "mana", "value": "Mana" },
+    { "key": "health", "value": "Health" },
+    { "key": "stamina", "value": "Stamina" },
+    { "key": "moveSpeed", "value": "Move Speed" },
+    { "key": "physicalDamage", "value": "Physical Damage" },
+    { "key": "magicDamage", "value": "Magic Damage" },
+    { "key": "critPhysical", "value": "Crit Chance (Physical)" },
+    { "key": "critMagic", "value": "Crit Chance (Magic)" },
+    { "key": "physicRes", "value": "Physical Resist" },
+    { "key": "armor", "value": "Armor" },
+    { "key": "magicRes", "value": "Magic Resist" },
+    { "key": "attackSpeed", "value": "Attack Speed" },
+    { "key": "cooldownReduction", "value": "Cooldown Reduction" }
+  ],
+
+  "quitGame":[
+    { "key": "content", "value": "Do you want to exit the game ?" },
+    { "key": "exit", "value": "Exit" },
+    { "key": "cancel", "value": "Cancel" }
   ]
 }
