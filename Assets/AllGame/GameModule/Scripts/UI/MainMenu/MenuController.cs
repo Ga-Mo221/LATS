@@ -1,6 +1,4 @@
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
-using System;
 using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour

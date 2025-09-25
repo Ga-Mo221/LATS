@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -92,7 +93,13 @@ public class GameManager : MonoBehaviour
     #region New Game
     public void newGame()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
+        StartCoroutine(startmusic());
+    }
+    private IEnumerator startmusic()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SoundManager.Instance.PlayBGAudioSound();
     }
     #endregion
 

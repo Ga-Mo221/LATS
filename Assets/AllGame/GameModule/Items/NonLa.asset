@@ -21,13 +21,13 @@ MonoBehaviour:
   _itemDamagePhysical: 1
   _itemDamgeMagic: 1
   _itemSpeedAttack: 1
-  _itemSpeedMove: 1
+  _itemSpeedMove: 0
   _itemHealth: 1
-  _itemcritChancePhysical: 1
+  _itemcritChancePhysical: 0
   _itemCritChanceMagic: 1
-  _itemArmor: 1
-  _itemPhysicRes: 1
-  _itemMagicResist: 1
+  _itemArmor: 0
+  _itemPhysicRes: 0
+  _itemMagicResist: 0
   _itemCooldownReduction: 0
   _itemPrice: 10
   _itemSellPrice: 5
