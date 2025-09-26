@@ -57,6 +57,18 @@ public class LocalizationManager
                     localizedText[entry.key] = entry.value;
                 }
                 break;
+            case "playerStats":
+                foreach (var entry in data.playerStats)
+                {
+                    localizedText[entry.key] = entry.value;
+                }
+                break;
+            case "quitGame":
+                foreach (var entry in data.quitGame)
+                {
+                    localizedText[entry.key] = entry.value;
+                }
+                break;
         }
         
 

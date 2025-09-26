@@ -159,7 +159,9 @@ public class PlayerController : MonoBehaviour
             PlayerManager.Instance.updateStamina(Time.deltaTime * 25, false);
         }
         if (_playerInput._isMoving)
+        {
             _rb.linearVelocity = new Vector2(_playerInput._moveInput * _moveSpeed, _rb.linearVelocity.y);
+        }
         _anim.setBoolIsMove(_playerInput._isMoving, _playerInput._isRunning);
         flip(_playerInput._moveInput);
     }

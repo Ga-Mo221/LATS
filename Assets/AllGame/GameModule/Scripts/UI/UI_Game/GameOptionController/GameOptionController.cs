@@ -32,6 +32,7 @@ public class GameOptionController : MonoBehaviour
 
     public void openMenu()
     {
+        SoundManager.Instance.stopBGAudioSound();
         GameManager.Instance._canOpenWindown = true;
         PlayerManager.Instance.destroyPlayer();
         SceneManager.LoadScene("GameMenu");

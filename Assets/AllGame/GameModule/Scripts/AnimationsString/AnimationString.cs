@@ -16,6 +16,7 @@ internal class AnimationString
     internal static string _isAlive = "IsALive";
     internal static string _isDetected = "IsDetected";
     internal static string _attackSpeed = "AttackSpeed";
+    internal static string _lifecount = "lifecount";
 
     // =====================
     // Enemy (dùng chung cho các EnemyBase, LeThuyNhan,...)

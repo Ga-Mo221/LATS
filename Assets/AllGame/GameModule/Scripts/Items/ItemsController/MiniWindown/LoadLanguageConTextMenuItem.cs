@@ -5,12 +5,30 @@ public class LoadLanguageConTextMenuItem : MonoBehaviour
 {
     public RtItem _rtItem;
 
-    [Header("Inventory")]
-    [SerializeField] private TextMeshProUGUI _useText;
-    [SerializeField] private TextMeshProUGUI _equieText;
-    [SerializeField] private TextMeshProUGUI _repairText;
-    [SerializeField] private TextMeshProUGUI _sellText;
-    [SerializeField] private TextMeshProUGUI _deleteText;
+    [Header("Inventory_R")]
+    [SerializeField] private TextMeshProUGUI _equieText_inventory_R;
+    [SerializeField] private TextMeshProUGUI _repairText_inventory_R;
+    [SerializeField] private TextMeshProUGUI _deleteText_inventory_R;
+
+    [Header("Inventory_L")]
+    [SerializeField] private TextMeshProUGUI _equieText_inventory_L;
+    [SerializeField] private TextMeshProUGUI _repairText_inventory_L;
+    [SerializeField] private TextMeshProUGUI _deleteText_inventory_L;
+
+    [Header("Inventory_R_Consumable")]
+    [SerializeField] private TextMeshProUGUI _useText_inventory_R_Consumable;
+    [SerializeField] private TextMeshProUGUI _deleteText_inventory_R_Consumable;
+
+    [Header("Inventory_L_Consumable")]
+    [SerializeField] private TextMeshProUGUI _useText_inventory_L_Consumable;
+    [SerializeField] private TextMeshProUGUI _deleteText_inventory_L_Consumable;
+    
+    [Header("UnEquie_R")]
+    [SerializeField] private TextMeshProUGUI _unEquie_R;
+    [Header("UnEquie_L")]
+    [SerializeField] private TextMeshProUGUI _unEquie_L;
+
+    //[SerializeField] private TextMeshProUGUI _sellText;
 
 
     void Start()
@@ -23,25 +41,68 @@ public class LoadLanguageConTextMenuItem : MonoBehaviour
     {
         LocalizationManager loc = new LocalizationManager();
         loc.LoadLocalization(SettingManager.Instance.CurrentSettings.language.ToString(), "itemButton");
-        _useText.text = loc.GetLocalizedValue("use");
-        _equieText.text = loc.GetLocalizedValue("equie");
-        _repairText.text = loc.GetLocalizedValue("reqair");
-        _sellText.text = loc.GetLocalizedValue("sell");
-        _deleteText.text = loc.GetLocalizedValue("delete");
+
+        // inventory_R
+        _equieText_inventory_R.text = loc.GetLocalizedValue("equie");
+        _repairText_inventory_R.text = loc.GetLocalizedValue("reqair");
+        _deleteText_inventory_R.text = loc.GetLocalizedValue("delete");
+
+        // inventory_L
+        _equieText_inventory_L.text = loc.GetLocalizedValue("equie");
+        _repairText_inventory_L.text = loc.GetLocalizedValue("reqair");
+        _deleteText_inventory_L.text = loc.GetLocalizedValue("delete");
+
+        // inventory_R_Consumable
+        _useText_inventory_R_Consumable.text = loc.GetLocalizedValue("use");
+        _deleteText_inventory_R_Consumable.text = loc.GetLocalizedValue("delete");
+
+        // inventory_L_Consumable
+        _useText_inventory_L_Consumable.text = loc.GetLocalizedValue("use");
+        _deleteText_inventory_L_Consumable.text = loc.GetLocalizedValue("delete");
+
+        // _unequip_R
+        _unEquie_R.text = loc.GetLocalizedValue("unequie");
+
+        // _unequip_L
+        _unEquie_L.text = loc.GetLocalizedValue("unequie");
     }
 
     private void debug()
     {
-        // inventory
-        if (!_useText)
-            Debug.LogError("[LoadLanguageConTextMenuItem] Chưa gán 'UseText'");
-        if (!_equieText)
-            Debug.LogError("[LoadLanguageConTextMenuItem] Chưa gán 'EquieText'");
-        if (!_repairText)
-            Debug.LogError("[LoadLanguageConTextMenuItem] Chưa gán 'ReqirText'");
-        if (!_sellText)
-            Debug.LogError("[LoadLanguageConTextMenuItem] Chưa gán 'SellText'");
-        if (!_deleteText)
-            Debug.LogError("[LoadLanguageConTextMenuItem] Chưa gán 'DeleteText'");
+        // inventory_R
+        if (!_equieText_inventory_R)
+            Debug.LogError("[LoadLanguageConTextMenuItem] Chưa gán 'EquieText_inventory_R'");
+        if (!_repairText_inventory_R)
+            Debug.LogError("[LoadLanguageConTextMenuItem] Chưa gán 'ReqirText_inventory_R'");
+        if (!_deleteText_inventory_R)
+            Debug.LogError("[LoadLanguageConTextMenuItem] Chưa gán 'DeleteText_inventory_R'");
+
+        // inventory_L
+        if (!_equieText_inventory_L)
+            Debug.LogError("[LoadLanguageConTextMenuItem] Chưa gán 'EquieText_inventory_L'");
+        if (!_repairText_inventory_L)
+            Debug.LogError("[LoadLanguageConTextMenuItem] Chưa gán 'ReqirText_inventory_L'");
+        if (!_deleteText_inventory_L)
+            Debug.LogError("[LoadLanguageConTextMenuItem] Chưa gán 'DeleteText_inventory_L'");
+
+        // inventory_R_Consumable
+        if (!_useText_inventory_R_Consumable)
+            Debug.LogError("[LoadLanguageConTextMenuItem] Chưa gán 'UseText_inventory_R_Consumable'");
+        if (!_deleteText_inventory_R_Consumable)
+            Debug.LogError("[LoadLanguageConTextMenuItem] Chưa gán 'DeleteText_inventory_R_Consumable'");
+
+        // inventory_L_Consumable
+        if (!_useText_inventory_L_Consumable)
+            Debug.LogError("[LoadLanguageConTextMenuItem] Chưa gán 'UseText_inventory_L_Consumable'");
+        if (!_deleteText_inventory_L_Consumable)
+            Debug.LogError("[LoadLanguageConTextMenuItem] Chưa gán 'DeleteText_inventory_L_Consumable'");
+
+        // unquie_R
+        if (!_unEquie_R)
+            Debug.LogError("[LoadLanguageConTextMenuItem] Chưa gán 'UnEquie_R'");
+
+        // unquie_L
+        if (!_unEquie_L)
+            Debug.LogError("[LoadLanguageConTextMenuItem] Chưa gán 'UnEquie_L'");
     }
 }

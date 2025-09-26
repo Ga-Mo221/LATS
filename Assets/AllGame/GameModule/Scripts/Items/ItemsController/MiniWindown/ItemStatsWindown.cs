@@ -17,15 +17,12 @@ public class ItemStatsWindown : MonoBehaviour
     }
 
 
-    public void ShowItemStats(String itemStats, Vector3 pos)
+    public void ShowItemStats(String itemStats, RtItem _rtItem, Vector3 pos)
     {
         transform.position = pos;
         _itemStatsText.text = itemStats;
-    }
-
-
-    public Slider GetDurabilitySlider()
-    {
-        return _durabilitySlider;
+        float _intDurability = _rtItem._currentDurability;
+        _durabilitySlider.maxValue = _rtItem._baseItem._maxDurability;
+        _durabilitySlider.value = _intDurability;
     }
 }

@@ -1769,6 +1769,9 @@ MonoBehaviour:
   _buttonTutorial: {fileID: 726099510421853540}
   _fullScreen: {fileID: 8775261526345251252}
   _windown: {fileID: 1928394341265372508}
+  _allVolume: {fileID: 5516720356177903275}
+  _SFXVolume: {fileID: 1238158755956742345}
+  _BGVolume: {fileID: 1586454409889055961}
 --- !u!1 &5084114443462052459
 GameObject:
   m_ObjectHideFlags: 0

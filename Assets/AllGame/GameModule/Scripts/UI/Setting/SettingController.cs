@@ -1,9 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using Unity.VisualScripting;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class SettingController : MonoBehaviour
 {
@@ -17,6 +15,10 @@ public class SettingController : MonoBehaviour
 
     [SerializeField] private GameObject _fullScreen;
     [SerializeField] private GameObject _windown;
+
+    [SerializeField] private Slider _allVolume;
+    [SerializeField] private Slider _SFXVolume;
+    [SerializeField] private Slider _BGVolume;
 
 
     void Awake()
@@ -48,6 +50,17 @@ public class SettingController : MonoBehaviour
         selectButton(_buttonAudio, true);
         selectButton(_buttonSettingMaster, false);
         selectButton(_buttonTutorial, false);
+        loadVolume();
+    }
+
+    public void loadVolume()
+    {
+        _allVolume.value = SettingManager.Instance.CurrentSettings.masterVolume;
+        SoundManager.Instance.SetAllVolume(SettingManager.Instance.CurrentSettings.masterVolume);
+        _BGVolume.value = SettingManager.Instance.CurrentSettings.musicVolume;
+        SoundManager.Instance.SetBGVolume(SettingManager.Instance.CurrentSettings.musicVolume);
+        _SFXVolume.value = SettingManager.Instance.CurrentSettings.sfxVolume;
+        SoundManager.Instance.SetFSXVolume(SettingManager.Instance.CurrentSettings.sfxVolume);
     }
     #endregion
 
@@ -202,6 +215,7 @@ public class SettingController : MonoBehaviour
     public void changeAudioVolume(float value)
     {
         SettingManager.Instance._settingTam.masterVolume = value;
+        SoundManager.Instance.SetAllVolume(value);
     }
     #endregion
 
@@ -210,6 +224,7 @@ public class SettingController : MonoBehaviour
     public void changeSFXVolume(float value)
     {
         SettingManager.Instance._settingTam.sfxVolume = value;
+        SoundManager.Instance.SetFSXVolume(value);
     }
     #endregion
 
@@ -218,6 +233,7 @@ public class SettingController : MonoBehaviour
     public void changeMusicVolume(float value)
     {
         SettingManager.Instance._settingTam.musicVolume = value;
+        SoundManager.Instance.SetBGVolume(value);
     }
     #endregion
 
@@ -226,6 +242,7 @@ public class SettingController : MonoBehaviour
     public Action onClose;
     public void closeGobj()
     {
+        loadVolume();
         GameManager.Instance._canOpenWindown = true;
         SettingManager.Instance.CurrentSettingsTosettingtam();
         onClose?.Invoke();

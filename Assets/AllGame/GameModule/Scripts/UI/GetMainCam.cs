@@ -18,7 +18,14 @@ public class GetMainCam : MonoBehaviour
             if (cam != null)
             {
                 canvas.worldCamera = cam;
-                canvas.sortingLayerName = "UI";
+                if (gameObject.CompareTag("Overlay"))
+                    canvas.sortingLayerName = "Overlay";
+                else if (transform.name == "PosInventory")
+                    canvas.sortingLayerName = "UI-";
+                else if (transform.name == "UI_PlayerStats")
+                    canvas.sortingLayerName = "UI--";
+                else
+                    canvas.sortingLayerName = "UI";
             }
             else
             {
@@ -27,7 +34,7 @@ public class GetMainCam : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("[GetMainCam] Không tìm thấy Canvas hoặc mainCamObj null.");
+            Debug.LogWarning($"[{transform.name}][GetMainCam] Không tìm thấy Canvas hoặc mainCamObj null.");
         }
     }
 }

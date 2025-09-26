@@ -87,6 +87,7 @@ public class Intro : MonoBehaviour
             }
             else
             {
+                GameManager.Instance._canOpenWindown = true;
                 gameObject.SetActive(false);
             }
         }

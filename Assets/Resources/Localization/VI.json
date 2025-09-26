@@ -39,6 +39,7 @@
 
   "itemButton":[
     { "key": "use", "value": "sử dụng" },
+    { "key": "unequie", "value": "gỡ" },
     { "key": "equie", "value": "trang bị" },
     { "key": "reqair", "value": "sửa" },
     { "key": "sell", "value": "bán" },
@@ -70,5 +71,28 @@
     { "key": "magicRes", "value": "Giáp Phép" },
     { "key": "cooldownReduction", "value": "Giảm Thời Gian Hồi Chiêu" },
     { "key": "durability", "value": "Độ Bền" }
+  ],
+
+  "playerStats":[
+    { "key": "level", "value": "Cấp" },
+    { "key": "mana", "value": "Năng Lượng" },
+    { "key": "health", "value": "Máu" },
+    { "key": "stamina", "value": "Thể Lực" },
+    { "key": "moveSpeed", "value": "Tốc Độ Di Chuyển" },
+    { "key": "physicalDamage", "value": "Sát Thương Vật Lý" },
+    { "key": "magicDamage", "value": "Sát Thương Phép" },
+    { "key": "critPhysical", "value": "Chí Mạng Vật Lý" },
+    { "key": "critMagic", "value": "Chí Mạng Phép" },
+    { "key": "physicRes", "value": "Kháng Vật Lý" },
+    { "key": "armor", "value": "Giáp" },
+    { "key": "magicRes", "value": "Giáp Phép" },
+    { "key": "attackSpeed", "value": "Tốc Độ Đánh" },
+    { "key": "cooldownReduction", "value": "Giảm Thời Gian Hồi Chiêu" }
+  ],
+
+  "quitGame":[
+    { "key": "content", "value": "Bạn Có Muốn Thoát Game Không ?" },
+    { "key": "exit", "value": "Thoát" },
+    { "key": "cancel", "value": "Không" }
   ]
 }

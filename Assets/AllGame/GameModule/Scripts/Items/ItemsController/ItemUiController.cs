@@ -58,8 +58,7 @@ public class ItemUiController : MonoBehaviour, IPointerClickHandler, IPointerEnt
         yield return new WaitForSeconds(1f);
         _itemStats_Overlay.gameObject.SetActive(true);
         var _itemStatsWindown = InventoryManager.Instance._itemStatsWindown;
-        Slider _durabilitySlider = _itemStatsWindown.GetDurabilitySlider();
-        _itemStatsWindown.ShowItemStats(stringitemStats(_rtItem, _durabilitySlider), _itemStatPos.position);
+        _itemStatsWindown.ShowItemStats(stringitemStats(),_rtItem, _itemStatPos.position);
     }
     #endregion
 
@@ -80,7 +79,21 @@ public class ItemUiController : MonoBehaviour, IPointerClickHandler, IPointerEnt
 
 
     #region Set Runtime Item
-    public void setRtItem(RtItem item) => _rtItem = item;
+    public void setRtItem(RtItem item)
+    {
+        if (item != null)
+        {
+            _rtItem = item;
+            _itemIcon.sprite = item._baseItem._itemIcon;
+            _itemIcon.enabled = true;
+        }
+        else
+        {
+            _rtItem = null;
+            _itemIcon.sprite = null;
+            _itemIcon.enabled = false;
+        }
+    }
     #endregion
 
 
@@ -104,16 +117,16 @@ public class ItemUiController : MonoBehaviour, IPointerClickHandler, IPointerEnt
         _resetClickCount = StartCoroutine(resetClickCount());
         if (_clickCount == 2)
         {
+            if (_itemStats_Overlay.gameObject.activeSelf)
+                _itemStats_Overlay.gameObject.SetActive(false);
             if (_rtItem._itemStatus == ItemStatus.UnEquip)
-            {
-                Debug.Log("[ItemUIController] Đã Trang Bị: " + _rtItem._baseItem._itemName);
-                InventoryManager.Instance.equip(_rtItem);
-            }
-            else if (_rtItem._itemStatus == ItemStatus.Equip)
-            {
-                Debug.Log("[ItemUIController] Đã Gỡ Trang Bị: " + _rtItem._baseItem._itemName);
-                InventoryManager.Instance.unEquip(_rtItem);
-            }
+                {
+                    InventoryManager.Instance.equip(_rtItem);
+                }
+                else if (_rtItem._itemStatus == ItemStatus.Equip)
+                {
+                    InventoryManager.Instance.unEquip(_rtItem);
+                }
         }
     }
     #endregion
@@ -133,13 +146,10 @@ public class ItemUiController : MonoBehaviour, IPointerClickHandler, IPointerEnt
     {
         if (_rtItem == null) return;
         if (_rtItem._itemID == "") return;
-        if (_rtItem._itemStatus == ItemStatus.UnEquip || _rtItem._itemStatus == ItemStatus.Equip)
-        {
-            _contextMenu_Overlay.gameObject.SetActive(true);
-            Vector3 _pos = transform.position;
-            var _itemContextMenuItem = InventoryManager.Instance._itemContextMenuItem;
-            _itemContextMenuItem.setItem(_rtItem, _pos, InventoryManager.Instance._inventoryWeapon.transform.position);
-        }
+        _contextMenu_Overlay.gameObject.SetActive(true);
+        Vector3 _pos = transform.position;
+        var _itemContextMenuItem = InventoryManager.Instance._itemContextMenuItem;
+        _itemContextMenuItem.setItem(_rtItem, _pos, InventoryManager.Instance._inventoryRightPos.position);
     }
     #endregion
 
@@ -160,14 +170,17 @@ public class ItemUiController : MonoBehaviour, IPointerClickHandler, IPointerEnt
         if (_rtItem._itemStatus == ItemStatus.UnEquip || _rtItem._itemStatus == ItemStatus.Equip)
         {
             _durabilitySlider.gameObject.SetActive(true);
-            _text.text = stringitemStats(_rtItem, _durabilitySlider);
+            _text.text = stringitemStats();
+            float _intDurability = _rtItem._currentDurability;
+            _durabilitySlider.maxValue = _rtItem._baseItem._maxDurability;
+            _durabilitySlider.value = _intDurability;
         }
     }
     #endregion
 
 
     #region String Item Stats
-    private string stringitemStats(RtItem item, Slider _durabilitySlider)
+    private string stringitemStats()
     {
         LocalizationManager loc = new LocalizationManager();
         loc.LoadLocalization(SettingManager.Instance.CurrentSettings.language.ToString(), "itemStats");
@@ -229,11 +242,6 @@ public class ItemUiController : MonoBehaviour, IPointerClickHandler, IPointerEnt
 
         // ===== EXTRA =====
         _text += loc.GetLocalizedValue("durability");
-
-        float _intDurability = _rtItem._baseItem._maxDurability - _rtItem._currentDurability;
-        _durabilitySlider.maxValue = _rtItem._baseItem._maxDurability;
-        _durabilitySlider.value = _intDurability;
-
         return _text;
     }
     #endregion
