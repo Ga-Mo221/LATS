@@ -52,7 +52,13 @@ public class LeThuyNhan : EnemyBase
     {
         if (!_isLive) return;
 
-        // Nếu đang trong trạng thái cố định (attack/hurt), dừng movement
+        // Nếu đang knockback, KHÔNG làm gì cả, để knockback tự nhiên
+        if (_isKnockedBack)
+        {
+            return;
+        }
+
+        // Nếu đang trong trạng thái cố định khác (attack/hurt), dừng movement
         if (ShouldStopMovement())
         {
             StopMovement();
@@ -62,22 +68,26 @@ public class LeThuyNhan : EnemyBase
         // GỌI base.FixedUpdate() để xử lý movement
         base.FixedUpdate();
     }
+
     #endregion
 
     #region State Management
     protected override bool ShouldStopMovement()
     {
-        return _isAttacking || _isHurt || _isKnockedBack;
+        // chỉ dừng movement khi đang attack hoặc hurt, không dừng khi knockback
+        return (_isAttacking || _isHurt) && !_isKnockedBack;
     }
+
 
     private void StopMovement()
     {
-        if (_rb != null)
+        if (_rb != null && !_isKnockedBack) // Chỉ dừng nếu không bị knockback
         {
             _rb.linearVelocity = new Vector2(0, _rb.linearVelocity.y);
             _isMoving = false;
         }
     }
+
 
     private void UpdateStateTimer()
     {
@@ -227,7 +237,14 @@ public class LeThuyNhan : EnemyBase
         Debug.Log("[LeThuyNhan] Taking damage");
 
         base.takeDamage();
+        OnTakeDamageEffects(); // Xử lý effects khi nhận damage
+    }
 
+    /// <summary>
+    /// Xử lý effects khi nhận damage (override từ base class)
+    /// </summary>
+    protected override void OnTakeDamageEffects()
+    {
         _isHurt = true;
         _stateTimer = _hurtAnimationDuration;
 
@@ -235,13 +252,11 @@ public class LeThuyNhan : EnemyBase
         if (_isAttacking)
         {
             _isAttacking = false;
+            Debug.Log("[LeThuyNhan] Attack interrupted by damage");
         }
 
-        if (_rb != null)
-        {
-            _rb.linearVelocity = new Vector2(0, _rb.linearVelocity.y);
-            _isMoving = false;
-        }
+        // set movement flag
+        _isMoving = false;
 
         // Sử dụng Animation Manager
         if (_animationManager != null)
@@ -253,7 +268,10 @@ public class LeThuyNhan : EnemyBase
             StopCoroutine(_currentStateCoroutine);
             _currentStateCoroutine = null;
         }
+
+        Debug.Log("[LeThuyNhan] Hurt state activated");
     }
+
 
     private void EndHurt()
     {

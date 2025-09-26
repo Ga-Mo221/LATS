@@ -226,7 +226,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &2500035273041818874
 BoxCollider2D:
@@ -291,12 +291,13 @@ MonoBehaviour:
   _enemyHP: 50
   _enemyPhysicalDamage: 10
   _enemyMagicDamage: 0
-  _enemyAttackRange: 4.75
+  _physicalRes: 0
+  _magicRes: 0
+  _enemyAttackRange: 5.55
   _enemyAttackCooldown: 1
   _detectionRange: 14.4
   _patrolRange: 30
-  _physicalRes: 0
-  _magicRes: 0
+  _patrolWaitDuration: 3
   _enemyRadaGOB: {fileID: 1827383567341227651}
   _canFly: 0
   _maxDeathCount: 3
@@ -315,7 +316,6 @@ MonoBehaviour:
   _isMoving: 0
   _isPatrol: 1
   _isStay: 0
-  _patrolWaitDuration: 3
   _knockbackForce: 10
   _knockbackDuration: 0.5
   _attackCooldown: 1
@@ -452,13 +452,20 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 2.3956242, y: 3.5943758}
+    - - {x: 4.303627, y: 3.69862}
+      - {x: 3.0362911, y: 4.209417}
+      - {x: 1.537674, y: 2.5106745}
       - {x: 0.7527771, y: 1.250859}
-      - {x: 1.4644818, y: 0.75527394}
-      - {x: 0.9409828, y: -1.1024451}
-      - {x: 2.2522202, y: -3.439279}
-      - {x: 4.502603, y: -1.6654487}
-      - {x: 4.513213, y: 1.829896}
+      - {x: 1.7207494, y: 0.75527394}
+      - {x: 1.3253822, y: -1.1024451}
+      - {x: 2.3291016, y: -3.5161605}
+      - {x: 4.1334953, y: -3.4552016}
+      - {x: 4.860882, y: -2.9378538}
+      - {x: 5.3739142, y: -1.6654487}
+      - {x: 5.4030495, y: -0.94019985}
+      - {x: 5.4782677, y: -0.5155697}
+      - {x: 5.4170303, y: 0.28363085}
+      - {x: 5.2563887, y: 1.9324026}
   m_UseDelaunayMesh: 0
 --- !u!1 &7480344015269986116
 GameObject:

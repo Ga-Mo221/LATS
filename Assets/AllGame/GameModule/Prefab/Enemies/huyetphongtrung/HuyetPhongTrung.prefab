@@ -323,7 +323,7 @@ SpriteRenderer:
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 24.96, y: 17.38}
+  m_Size: {x: 4.992, y: 3.476}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -368,12 +368,13 @@ MonoBehaviour:
   _enemyHP: 10
   _enemyPhysicalDamage: 10
   _enemyMagicDamage: 0
+  _physicalRes: 0
+  _magicRes: 0
   _enemyAttackRange: 2
   _enemyAttackCooldown: 0
   _detectionRange: 8
   _patrolRange: 6
-  _physicalRes: 0
-  _magicRes: 0
+  _patrolWaitDuration: 2
   _enemyRadaGOB: {fileID: 33356983048138436}
   _canFly: 1
   _maxDeathCount: 3
@@ -392,7 +393,6 @@ MonoBehaviour:
   _isMoving: 0
   _isPatrol: 1
   _isStay: 0
-  _patrolWaitDuration: 2
   _knockbackForce: 10
   _knockbackDuration: 2
   _countdownDuration: 8
@@ -488,7 +488,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 2
+  m_Radius: 3
 --- !u!114 &3536891855499398103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,4 +585,4 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 3
+  m_Radius: 6

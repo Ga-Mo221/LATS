@@ -326,6 +326,11 @@ public class PhongHuyetTrung : EnemyBase
         _isExploding = false;
         _isPoisoning = false;
 
+         // Ẩn sprite ngay khi chết
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+            sr.enabled = false;
+
         base.Die();
     }
 
