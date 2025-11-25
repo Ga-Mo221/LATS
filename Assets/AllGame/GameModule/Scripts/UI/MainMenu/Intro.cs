@@ -76,6 +76,8 @@ public class Intro : MonoBehaviour
         {
             _load.SetActive(false);
             _loop += 1;
+            if (SoundManager.Instance != null)
+                SoundManager.Instance.PlayMainMenuSound();
         }
         else if (_loop > 3)
         {
@@ -156,6 +158,8 @@ public class Intro : MonoBehaviour
     private IEnumerator displayLogo()
     {
         _displaylogo = false;
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.playLogoSound();
         yield return new WaitForSeconds(2f);
         _start = false;
         _timeElapsed = 0f;

@@ -4,12 +4,27 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
 
+    // --- UI Game ---
+    [Header("Button sound")]
+    [SerializeField] private AudioSource _ButtonUISound;
+    [SerializeField] private AudioClip hoverSound;          // Âm thanh khi hover
+    [SerializeField] private AudioClip clickSound;          // Âm thanh khi click
+
+    // --- Logo ---
+    [Header("Logo")]
+    [SerializeField] private AudioSource _logoAudioSound;
+    [SerializeField] private AudioClip _logoClip;
+
     // --- Background ---
+    [Header("Music Game")]
+    [SerializeField] private AudioSource _BgMusic;
     [SerializeField] private AudioSource _bgAudioSound_Chim;
     [SerializeField] private AudioSource _bgAudioSound_Ve;
     [SerializeField] private AudioSource _bgAudioSound_La;
     [SerializeField] private AudioSource _bgAudioSound_ConTrung;
 
+    [SerializeField] private AudioClip _musicBGGame;
+    [SerializeField] private AudioClip _musicBGMainMenu;
     [SerializeField] private AudioClip _tiengChim;
     [SerializeField] private AudioClip _tiengVe;
     [SerializeField] private AudioClip _tiengConTrung;
@@ -36,9 +51,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip _dash;
 
     // Volume control
-    private float _allVolume = 1f;
-    private float _bgVolume = 1f;
-    private float _FSXVolume = 1f;
+    [SerializeField] private float _allVolume = 1f;
+    [SerializeField] private float _bgVolume = 1f;
+    [SerializeField] private float _FSXVolume = 1f;
 
     void Awake()
     {
@@ -53,24 +68,41 @@ public class SoundManager : MonoBehaviour
 
     void Start()
     {
-        //PlayBGAudioSound();
+        // load setting volume
+        if (SettingManager.Instance == null) return;
+        SetAllVolume(SettingManager.Instance.CurrentSettings.masterVolume);
+        SetBGVolume(SettingManager.Instance.CurrentSettings.musicVolume);
+        SetFSXVolume(SettingManager.Instance.CurrentSettings.sfxVolume);
     }
 
     // ================= BACKGROUND =================
     public void PlayBGAudioSound()
     {
+        PlayLoop(_BgMusic, _musicBGGame);
         PlayLoop(_bgAudioSound_Chim, _tiengChim);
         PlayLoop(_bgAudioSound_Ve, _tiengVe);
         PlayLoop(_bgAudioSound_ConTrung, _tiengConTrung);
         PlayLoop(_bgAudioSound_La, _tiengLaXaoSac);
     }
 
+    public void PlayMainMenuSound()
+    {
+        if (_BgMusic.isPlaying) stopBGAudioSound();
+        PlayLoop(_BgMusic, _musicBGMainMenu);
+    }
+
     public void stopBGAudioSound()
     {
+        _BgMusic.Stop();
         _bgAudioSound_Chim.Stop();
         _bgAudioSound_Ve.Stop();
         _bgAudioSound_ConTrung.Stop();
         _bgAudioSound_La.Stop();
+    }
+
+    public void stopMainMenuSound()
+    {
+        _BgMusic.Stop();
     }
 
     private void PlayLoop(AudioSource source, AudioClip clip)
@@ -163,5 +195,24 @@ public class SoundManager : MonoBehaviour
     public void ResumeAll()
     {
         AudioListener.pause = false;
+    }
+
+    public void playButtonHover()
+    {
+        if (hoverSound == null) return;
+        _ButtonUISound.PlayOneShot(hoverSound, _FSXVolume * _allVolume);
+    }
+
+    public void playButtonPressed()
+    {
+        if (clickSound == null) return;
+        _ButtonUISound.PlayOneShot(clickSound, _FSXVolume * _allVolume);
+    }
+
+    public void playLogoSound()
+    {
+        if (_logoClip == null) return;
+        if (_logoAudioSound == null) return;
+        _logoAudioSound.PlayOneShot(_logoClip, _bgVolume * _allVolume);
     }
 }

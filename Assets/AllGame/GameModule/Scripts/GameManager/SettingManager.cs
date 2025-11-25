@@ -1,6 +1,5 @@
 using System.IO;
 using UnityEngine;
-using TMPro;
 
 public class SettingManager : MonoBehaviour
 {

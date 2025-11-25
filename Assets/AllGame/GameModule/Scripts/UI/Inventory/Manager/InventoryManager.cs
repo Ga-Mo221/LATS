@@ -87,6 +87,8 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private GetMainCam _cameraBG;
     [ShowIf(nameof(_show))]
     [SerializeField] private GetMainCam _cameraOverlay;
+    [ShowIf(nameof(_show))]
+    [SerializeField] private GameObject _backButtom;
     #endregion
 
 
@@ -507,6 +509,7 @@ public class InventoryManager : MonoBehaviour
         _BG.SetActive(amount);
         _displayItemsEquie.loadLanguage();
         _isOpen = amount;
+        _backButtom.SetActive(amount);
     }
     public void setActiveInventoryRight(bool amount, Vector3 pos)
     {
@@ -520,5 +523,18 @@ public class InventoryManager : MonoBehaviour
         _cameraPlayerEquip.setupCamera();
     }
     public bool getActiveInventoryRight() => _inventoryRight.getActiveInventory();
+    #endregion
+
+
+    #region Button close UI
+    public void CloseUI()
+    {
+        if (GameManager.Instance != null)
+            GameManager.Instance._canOpenWindown = true;
+        
+        _itemStats_Overlay.gameObject.SetActive(false);
+        _contextMenu_Overlay.gameObject.SetActive(false);
+        setActive(false);
+    }
     #endregion
 }
