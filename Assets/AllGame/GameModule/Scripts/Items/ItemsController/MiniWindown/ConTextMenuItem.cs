@@ -15,6 +15,10 @@ public class ConTextMenuItem : MonoBehaviour
     [SerializeField] private GameObject _inventory_L_Consumable;
     [SerializeField] private GameObject _unquie_R;
     [SerializeField] private GameObject _unquie_L;
+    //add
+    [Header("Drop Item Menu (Chest)")]
+    [SerializeField] private GameObject _dropItem_R;
+    [SerializeField] private GameObject _dropItem_L;
 
 
     void Start()
@@ -43,12 +47,37 @@ public class ConTextMenuItem : MonoBehaviour
 
     public RtItem getRtItem() => _rtItem;
 
+    
     public void setItem(RtItem rtItem, Vector3 pos, Vector3 centerPos)
     {
         _rtItem = rtItem;
         transform.position = pos;
         _loadLanguage.loadLanguage();
         _contextMenuController.setRtItem(_rtItem);
+
+        //add
+        // Xử lý Drop items trước
+        if (_rtItem._itemStatus == ItemStatus.Drop)
+        {
+            _inventory_R.SetActive(false);
+            _inventory_L.SetActive(false);
+            _inventory_R_Consumable.SetActive(false);
+            _inventory_L_Consumable.SetActive(false);
+            _unquie_R.SetActive(false);
+            _unquie_L.SetActive(false);
+
+            if (pos.x > centerPos.x)
+            {
+                if (_dropItem_R != null) _dropItem_R.SetActive(false);
+                if (_dropItem_L != null) _dropItem_L.SetActive(true);
+            }
+            else
+            {
+                if (_dropItem_R != null) _dropItem_R.SetActive(true);
+                if (_dropItem_L != null) _dropItem_L.SetActive(false);
+            }
+            return;
+        }
 
         if (_rtItem._itemStatus == ItemStatus.UnEquip)
         {
@@ -134,5 +163,18 @@ public class ConTextMenuItem : MonoBehaviour
                 _unquie_L.SetActive(false);
             }
         }
+    }
+
+    //add
+    public void setItem(RtItem rtItem, Vector3 pos, Vector3 centerPos, ItemUiController itemUi)
+    {
+        // Lưu reference
+        if (itemUi != null)
+        {
+            _contextMenuController.setItemUiController(itemUi);
+        }
+        
+        // Gọi method cũ
+        setItem(rtItem, pos, centerPos);
     }
 }

@@ -9,11 +9,12 @@ public class ItemUiController : MonoBehaviour, IPointerClickHandler, IPointerEnt
     public RtItem _rtItem;
     [SerializeField] public Image _itemIcon;
     [SerializeField] private Transform _itemStatPos;
+    public bool _pickUp = false;
     private Transform _contextMenu_Overlay;
     private Transform _itemStats_Overlay;
     private int _clickCount = 0;
     private Coroutine _resetClickCount;
-    private Coroutine _showItemStat;
+    private Coroutine _showItemStat;    
 
 
     void Start()
@@ -102,8 +103,49 @@ public class ItemUiController : MonoBehaviour, IPointerClickHandler, IPointerEnt
     {
         if (_rtItem == null) return;
         if (_rtItem._itemID == "") return;
+        //add
+        //Xử lý pickup nếu item đang ở trạng thái Drop
+        if (_rtItem._itemStatus == ItemStatus.Drop)
+        {
+            pickUpItem();
+        }
         if (_rtItem._itemStatus == ItemStatus.UnEquip || _rtItem._itemStatus == ItemStatus.Equip)
             EquipORUnEquip();
+    }
+    #endregion
+
+    //add
+    #region Pick Up Item from Chest
+    public void pickUpItem()
+    {
+        // Check inventory còn chỗ trống
+        bool added = false;
+        switch (_rtItem._baseItem._itemType)
+        {
+            case ItemType.Weapon:
+                added = InventoryManager.Instance._rtItemsWeapon.Count < InventoryConstants.MAX_WEAPON;
+                break;
+            case ItemType.Helmet:
+                added = InventoryManager.Instance._rtItemsHelmet.Count < InventoryConstants.MAX_HELMET;
+                break;
+            case ItemType.Armor:
+                added = InventoryManager.Instance._rtItemsArmor.Count < InventoryConstants.MAX_ARMOR;
+                break;
+            case ItemType.Boots:
+                added = InventoryManager.Instance._rtItemsBoots.Count < InventoryConstants.MAX_BOOTS;
+                break;
+            case ItemType.Accessory:
+                added = InventoryManager.Instance._rtItemsAccesory.Count < InventoryConstants.MAX_ACCESSORY;
+                break;
+            case ItemType.Consumable:
+                added = InventoryManager.Instance._rtItemsConsumahble.Count < InventoryConstants.MAX_CONSUMABLE;                
+                break;
+        }
+        if (added)
+        {
+            InventoryManager.Instance.addItemToList(_rtItem);
+            _pickUp = true;
+        }
     }
     #endregion
 
@@ -149,7 +191,8 @@ public class ItemUiController : MonoBehaviour, IPointerClickHandler, IPointerEnt
         _contextMenu_Overlay.gameObject.SetActive(true);
         Vector3 _pos = transform.position;
         var _itemContextMenuItem = InventoryManager.Instance._itemContextMenuItem;
-        _itemContextMenuItem.setItem(_rtItem, _pos, InventoryManager.Instance._inventoryRightPos.position);
+        //add this
+        _itemContextMenuItem.setItem(_rtItem, _pos, InventoryManager.Instance._inventoryRightPos.position,this);
     }
     #endregion
 

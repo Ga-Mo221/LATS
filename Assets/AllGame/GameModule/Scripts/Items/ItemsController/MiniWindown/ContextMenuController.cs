@@ -4,6 +4,8 @@ public class ContextMenuController : MonoBehaviour
 {
     public RtItem _rtItem;
     private GameObject _ovelay;
+    //add
+    private ItemUiController _itemUiController;
 
     void Start()
     {
@@ -11,6 +13,12 @@ public class ContextMenuController : MonoBehaviour
     }
 
     public void setRtItem(RtItem rtitem) => _rtItem = rtitem;
+
+    //add
+    public void setItemUiController(ItemUiController itemUi)
+    {
+        _itemUiController = itemUi;
+    }
 
     public void equip()
     {
@@ -40,5 +48,19 @@ public class ContextMenuController : MonoBehaviour
     {
         Debug.Log("[ContextMenuController] Bạn đã sử dụng item " + _rtItem._baseItem.name);
         _ovelay.SetActive(false);
+    }
+
+    //add
+     public void pickUp()
+    {
+        if (_itemUiController != null)
+        {
+            _itemUiController.pickUpItem();
+            _ovelay.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("[ContextMenuController] ItemUiController chưa được set!");
+        }
     }
 }
