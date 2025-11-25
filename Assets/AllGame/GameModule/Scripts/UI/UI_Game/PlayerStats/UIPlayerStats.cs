@@ -12,7 +12,14 @@ public class UIPlayerStats : MonoBehaviour
 
     // text
     [SerializeField] private TextMeshProUGUI _fps;
+    [SerializeField] private TextMeshProUGUI _coin;
+
+    // dash skill
+    [SerializeField] private Image _resetDash;
     private float _deltaTime = 0.0f;
+
+    // Fade In Game
+    [SerializeField] private GameObject Fade_in;
 
 
     void Start()
@@ -27,6 +34,8 @@ public class UIPlayerStats : MonoBehaviour
             Debug.LogError("[UIPlayerState] Chưa gán 'TextMeshProUGUI _fps'");
         if (!_lifecountAnim)
             Debug.LogError("[UIPlayerState] Chưa gán 'Animator _lifecountAnim");
+
+        Fade_in.SetActive(true);
     }
 
 
@@ -35,6 +44,8 @@ public class UIPlayerStats : MonoBehaviour
         updateFps();
 
         updatePlayerStats();
+
+        updateResetDash();
     }
 
 
@@ -50,6 +61,9 @@ public class UIPlayerStats : MonoBehaviour
 
         int _lifeCount = PlayerManager.Instance._start._currentLifeCount;
         _lifecountAnim.SetInteger(AnimationString._lifecount, _lifeCount);
+
+        int _coin_value = PlayerManager.Instance._start._xeng;
+        _coin.text = _coin_value.ToString();
     }
 
     private void updateFps()
@@ -57,5 +71,10 @@ public class UIPlayerStats : MonoBehaviour
         _deltaTime += (Time.unscaledDeltaTime - _deltaTime) * 0.1f;
         float fps = 1.0f / _deltaTime;
         _fps.text = Mathf.Ceil(fps).ToString() + " FPS";
+    }
+
+    private void updateResetDash()
+    {
+        _resetDash.fillAmount = PlayerManager.Instance.getDashTimeReset();
     }
 }

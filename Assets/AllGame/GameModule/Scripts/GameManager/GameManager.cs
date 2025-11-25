@@ -37,16 +37,20 @@ public class GameManager : MonoBehaviour
     // quit Game
     public GameObject _quitGame { get; set; }
     public QuitGameController _quiGameController { get; set; }
+
+    [SerializeField] private bool _On_Intro = true;
     #endregion
 
 
     void Start()
     {
+        createGameUI();
+
+        if (!_On_Intro) return;
         if (SceneManager.GetActiveScene().name == "GameMenu")
         {
             Instantiate(GameModule.Instance._IntroPrefab);
         }
-        createGameUI();
     }
 
     void Update()

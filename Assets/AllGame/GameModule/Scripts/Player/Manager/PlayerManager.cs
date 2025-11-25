@@ -1,6 +1,4 @@
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -42,7 +40,8 @@ public class PlayerManager : MonoBehaviour
     private bool _knocked = false; // bị trúng đòn
     // canattack sẽ chạy ở hàm update để kiểm tra trong AnimatorController có weapon type = 0 hay không?
     private bool _canAttack = true; // cho những trường hợp đặc biệt hoặc không có vũ khí
-    private float _dashTime = 0f;
+    [SerializeField] private float _dashTime = 0f;
+    [SerializeField] private float _dashTimeReset = 0f;
     private float _stamina = 0f;
     private bool _isAttacking = false;
 
@@ -87,6 +86,7 @@ public class PlayerManager : MonoBehaviour
             _isDetected = false;
             _stamina = _start._stamina;
             _dashTime = _start._dashingCooldown;
+            _dashTimeReset = 0;
         }
         else
         {
@@ -106,6 +106,7 @@ public class PlayerManager : MonoBehaviour
         _knocked = false;
         _stamina = _start._stamina;
         _dashTime = _start._dashingCooldown;
+        _dashTimeReset =0;
         Debug.Log($"[PlayerManager] Tạo mới nhân vật tại vị trí : \n _start: {_start._StartPoint}\n transform: {transform.position}");
     }
     #endregion
@@ -223,8 +224,9 @@ public class PlayerManager : MonoBehaviour
 
     #region Dash Time
     public void setCanDashTime(float amount) => _dashTime = amount;
-
     public float getDashTime() => _dashTime;
+    public void setDashTimeReset(float value) => _dashTimeReset = value;
+    public float getDashTimeReset() => _dashTimeReset;
     #endregion
 
 

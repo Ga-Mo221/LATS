@@ -1,0 +1,9 @@
+﻿<Solution>
+  <Project Path="NaughtyAttributes.Core.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="NaughtyAttributes.Editor.csproj" />
+  <Project Path="AstarPathfindingProject.csproj" />
+  <Project Path="NaughtyAttributes.Test.csproj" />
+  <Project Path="PackageToolsEditor.csproj" />
+  <Project Path="AstarPathfindingProjectEditor.csproj" />
+</Solution>

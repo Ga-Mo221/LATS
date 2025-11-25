@@ -1,6 +1,5 @@
 using System.Collections;
 using NaughtyAttributes;
-using UnityEditor;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -240,7 +239,17 @@ public class PlayerController : MonoBehaviour
     }
     private IEnumerator resetCanDash(float amount)
     {
-        yield return new WaitForSeconds(amount);
+        float resetTime = 0;
+        while (resetTime < amount)
+        {
+            resetTime += Time.deltaTime;
+            float time = Mathf.Lerp(1f,0f,resetTime / amount);
+            if (PlayerManager.Instance != null)
+                PlayerManager.Instance.setDashTimeReset(time);
+            yield return null;
+        }
+        if (PlayerManager.Instance != null)
+            PlayerManager.Instance.setDashTimeReset(0);
         _canDash = true;
     }
     #endregion

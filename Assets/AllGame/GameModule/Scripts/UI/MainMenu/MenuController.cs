@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,8 @@ public class MenuController : MonoBehaviour
 {
     [SerializeField] private GameObject _mainMenuButtons;
     private LoadMainMenuLanguage _loadLanguage;
+    // change scene
+    [SerializeField] private Animator _changeSceneAnim;
 
     void Awake()
     {
@@ -17,6 +20,13 @@ public class MenuController : MonoBehaviour
 
     public void newGame()
     {
+        if (_changeSceneAnim == null) return;
+        _changeSceneAnim.SetTrigger("start");
+        StartCoroutine(startGame());
+    }
+    private IEnumerator startGame()
+    {
+        yield return new WaitForSeconds(0.5f);
         GameManager.Instance.newGame();
     }
 

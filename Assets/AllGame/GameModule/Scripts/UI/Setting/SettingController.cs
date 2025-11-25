@@ -20,6 +20,8 @@ public class SettingController : MonoBehaviour
     [SerializeField] private Slider _SFXVolume;
     [SerializeField] private Slider _BGVolume;
 
+    [SerializeField] private Color _currentColor;
+
 
     void Awake()
     {
@@ -300,7 +302,7 @@ public class SettingController : MonoBehaviour
         else
         {
             _img.sprite = _imgDis;
-            _text.color = Color.white;
+            _text.color = _currentColor;
         }
     }
     #endregion
