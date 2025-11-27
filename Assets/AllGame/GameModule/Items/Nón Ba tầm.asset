@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f65e3d3645303b468681ed358e18575, type: 3}
+  m_Name: "N\xF3n Ba t\u1EA7m"
+  m_EditorClassIdentifier: 
+  _itemID: H2
+  _itemName: "N\xF3n Ba T\u1EA7m"
+  _itemIcon: {fileID: 21300000, guid: cdec9a90b16ad4840a35ec38c37c2acd, type: 3}
+  _itemType: 0
+  _itemRarity: 1
+  _weaponType: 2
+  _itemDamagePhysical: 0
+  _itemDamgeMagic: 0
+  _itemSpeedAttack: 0
+  _itemSpeedMove: -10
+  _itemHealth: 50
+  _itemcritChancePhysical: 0
+  _itemCritChanceMagic: 0
+  _itemArmor: 25
+  _itemPhysicRes: 5
+  _itemMagicResist: 2
+  _itemCooldownReduction: 0
+  _itemPrice: 300
+  _itemSellPrice: 40
+  _itemCooldownTime: 0
+  _maxDurability: 100

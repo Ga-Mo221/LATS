@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f65e3d3645303b468681ed358e18575, type: 3}
+  m_Name: "\xC1o R\xE1ch"
+  m_EditorClassIdentifier: 
+  _itemID: A1
+  _itemName: "\xC1o R\xE1ch"
+  _itemIcon: {fileID: 21300000, guid: 90d9f96d49b790b4b9b8fe9ba3bf763d, type: 3}
+  _itemType: 1
+  _itemRarity: 0
+  _weaponType: 2
+  _itemDamagePhysical: 0
+  _itemDamgeMagic: 0
+  _itemSpeedAttack: 0
+  _itemSpeedMove: 0
+  _itemHealth: 20
+  _itemcritChancePhysical: 0
+  _itemCritChanceMagic: 0
+  _itemArmor: 10
+  _itemPhysicRes: 0
+  _itemMagicResist: 0
+  _itemCooldownReduction: 0
+  _itemPrice: 100
+  _itemSellPrice: 15
+  _itemCooldownTime: 0
+  _maxDurability: 100
