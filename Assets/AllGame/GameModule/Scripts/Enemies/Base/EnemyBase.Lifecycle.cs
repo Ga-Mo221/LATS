@@ -12,6 +12,16 @@ public abstract partial class EnemyBase
     {
         _currentDeathCount++;
 
+        if (_currentDeathCount == 1)
+        {
+            GameObject tui = Instantiate(_itemDropPrefab, transform.position, Quaternion.identity);
+            var chest = tui.GetComponent<Chest>();
+            foreach (var Items in _possibleDropItems)
+            {
+                chest.addItems(Items);
+            }
+        }
+
         // Xóa sạch pathfinding data
         clearPathCompletely();
 

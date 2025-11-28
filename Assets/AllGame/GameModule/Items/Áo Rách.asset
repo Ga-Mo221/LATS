@@ -20,7 +20,7 @@ MonoBehaviour:
   _weaponType: 2
   _itemDamagePhysical: 0
   _itemDamgeMagic: 0
-  _itemSpeedAttack: 0
+  _itemSpeedAttack: 30
   _itemSpeedMove: 0
   _itemHealth: 20
   _itemcritChancePhysical: 0

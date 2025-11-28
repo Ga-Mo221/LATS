@@ -548,6 +548,8 @@ MonoBehaviour:
     _skillQ: 0
     _skillW: 0
     _skillE: 0
+  _dashTime: 0
+  _dashTimeReset: 0
 --- !u!114 &2456811430465164310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,6 +567,7 @@ MonoBehaviour:
   _playerController: {fileID: 8977482446490761238}
   _canvasDamageText: {fileID: 1889679724405660742}
   _startDamagetTextPos: {fileID: 8391285608480402397}
+  playerSound: {fileID: 5532172098535306821}
   _damageTexts:
   - {fileID: 0}
   - {fileID: 0}

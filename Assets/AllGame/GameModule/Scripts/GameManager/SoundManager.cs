@@ -47,6 +47,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip _jump2;
     [SerializeField] private AudioClip _tiepdat;
 
+    [Header("Hurt")]
+    [SerializeField] private AudioClip _hurt1;
+
     [Header("Other FX")]
     [SerializeField] private AudioClip _dash;
 
@@ -186,7 +189,6 @@ public class SoundManager : MonoBehaviour
         _effectAudioSound.volume = _FSXVolume * _allVolume;
     }
 
-    // ================= EXTRA =================
     public void PauseAll()
     {
         AudioListener.pause = true;
@@ -214,5 +216,11 @@ public class SoundManager : MonoBehaviour
         if (_logoClip == null) return;
         if (_logoAudioSound == null) return;
         _logoAudioSound.PlayOneShot(_logoClip, _bgVolume * _allVolume);
+    }
+
+    public void HurtAudio()
+    {
+        if (_hurt1 == null) return;
+        _effectAudioSound.PlayOneShot(_hurt1, _FSXVolume * _allVolume);
     }
 }

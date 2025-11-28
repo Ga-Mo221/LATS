@@ -1,5 +1,6 @@
 using UnityEngine;
 using Pathfinding;
+using System.Collections.Generic;
 
 /// <summary>
 /// Lớp cơ sở cho tất cả enemy trong game
@@ -48,6 +49,10 @@ public abstract partial class EnemyBase : MonoBehaviour
     [SerializeField] private Transform _canvasDamageText;           // Canvas hiển thị DamageText
     [SerializeField] private Transform _startDamageTextPos;         // Vị trí spawn DamageText
     public GameObject[] _damageTexts = new GameObject[5];           // Bộ nhớ cache DamageText (5 cái)
+
+    [Header("Drop Items")]
+    [SerializeField] private GameObject _itemDropPrefab;            // Prefab item drop khi enemy chết
+    [SerializeField] private List<Item> _possibleDropItems;         // Danh sách item có thể drop
 
     [Header("Directional Detection (Ground enemies only)")]
     [SerializeField] protected float _frontDetectionAngle = 90f;    // Góc nhìn phía trước (degrees)

@@ -116,11 +116,11 @@ public class InventoryManager : MonoBehaviour
         _itemStatsText = _inventoryRight._itemStatsText;
         _durabilitySlider = _inventoryRight._durabilitySlider;
 
-        foreach (var item in InventoryManager.Instance._allItems)
-        {
-            for (int i = 0; i < 10; i++)
-                InventoryManager.Instance.addItemToList(item);
-        }
+        // foreach (var item in InventoryManager.Instance._allItems)
+        // {
+        //     for (int i = 0; i < 10; i++)
+        //         InventoryManager.Instance.addItemToList(item);
+        // }
         autoCreatePrefab();
     }
 

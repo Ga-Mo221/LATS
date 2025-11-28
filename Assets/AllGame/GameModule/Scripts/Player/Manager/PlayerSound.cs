@@ -47,4 +47,9 @@ public class PlayerSound : MonoBehaviour
         SoundManager.Instance.PlayJumpAudio(3);
     }
 
+    public void Hurt()
+    {
+        SoundManager.Instance.HurtAudio();
+    }
+
 }

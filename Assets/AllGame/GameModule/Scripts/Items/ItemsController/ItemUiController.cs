@@ -16,6 +16,11 @@ public class ItemUiController : MonoBehaviour, IPointerClickHandler, IPointerEnt
     private Coroutine _resetClickCount;
     private Coroutine _showItemStat;    
 
+    [SerializeField] private Image dim;
+    [SerializeField] private Sprite dimC;
+    [SerializeField] private Sprite dimR;
+    [SerializeField] private Sprite dimL;
+
 
     void Start()
     {
@@ -93,9 +98,44 @@ public class ItemUiController : MonoBehaviour, IPointerClickHandler, IPointerEnt
             _rtItem = null;
             _itemIcon.sprite = null;
             _itemIcon.enabled = false;
+
         }
+        checkItemsRarity();
     }
     #endregion
+
+
+    public void checkItemsRarity()
+    {
+        if (_rtItem == null || _rtItem._itemStatus == ItemStatus.Equip)
+        {
+            if (dim != null)
+            {
+                dim.gameObject.SetActive(false);
+                Debug.Log("[ItemUiController] Item is null or is equipped, hide dim overlay.",this);
+            }
+            return;
+        }
+        else{
+            if (dim != null)
+            {
+                dim.gameObject.SetActive(true);
+                if (_rtItem._baseItem._itemRarity == ItemRarity.Common)
+                {
+                    dim.sprite = dimC;
+                }
+                else if (_rtItem._baseItem._itemRarity == ItemRarity.Rare)
+                {
+                    dim.sprite = dimR;
+                }
+                else if (_rtItem._baseItem._itemRarity == ItemRarity.Legendary)
+                {
+                    dim.sprite = dimL;
+                }
+                Debug.Log($"[ItemUiController] {_rtItem._baseItem._itemName} rarity checked and dim overlay updated.",this);
+            }   
+        }
+    }
 
 
     #region Mouse Left Click
@@ -162,13 +202,13 @@ public class ItemUiController : MonoBehaviour, IPointerClickHandler, IPointerEnt
             if (_itemStats_Overlay.gameObject.activeSelf)
                 _itemStats_Overlay.gameObject.SetActive(false);
             if (_rtItem._itemStatus == ItemStatus.UnEquip)
-                {
-                    InventoryManager.Instance.equip(_rtItem);
-                }
-                else if (_rtItem._itemStatus == ItemStatus.Equip)
-                {
-                    InventoryManager.Instance.unEquip(_rtItem);
-                }
+            {
+                InventoryManager.Instance.equip(_rtItem);
+            }
+            else if (_rtItem._itemStatus == ItemStatus.Equip)
+            {
+                InventoryManager.Instance.unEquip(_rtItem);
+            }
         }
     }
     #endregion

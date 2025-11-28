@@ -316,7 +316,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 468518607
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -4519742850347100566, guid: 3ce16b9b16978f9459665643159ab898, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -363,8 +363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d3801a42567b748979caf5892fcb8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyMoveSpd: 1.5
-  _enemyRunSpd: 2
+  _enemyMoveSpd: 5
+  _enemyRunSpd: 10
   _enemyHP: 10
   _enemyPhysicalDamage: 10
   _enemyMagicDamage: 0
@@ -372,13 +372,13 @@ MonoBehaviour:
   _magicRes: 0
   _enemyAttackRange: 2
   _enemyAttackCooldown: 0
-  _detectionRange: 8
+  _detectionRange: 25
   _patrolRange: 6
   _patrolWaitDuration: 2
   _enemyRadaGOB: {fileID: 33356983048138436}
   _canFly: 1
   _maxDeathCount: 3
-  _delaySpawn: 3
+  _delaySpawn: 300
   _canvasDamageText: {fileID: 498543844875100783}
   _startDamageTextPos: {fileID: 8278324408633880130}
   _damageTexts:
@@ -387,6 +387,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _itemDropPrefab: {fileID: 1161553147167955959, guid: 92de7f93f8b27c048b2f5933765559e4, type: 3}
+  _possibleDropItems: []
   _frontDetectionAngle: 90
   _backDetectionRange: 2
   _nextWaypointDistance: 1.2

@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private Transform _canvasDamageText;
     [SerializeField] private Transform _startDamagetTextPos;
+    [SerializeField] private PlayerSound playerSound;
 
     public GameObject[] _damageTexts = new GameObject[10];
 
@@ -33,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
     #region Take Damage
     public void takeDamage(int _id, float _damage, bool _magic)
     {
+        playerSound.Hurt();
         switch (_id)
         {
             case 1:

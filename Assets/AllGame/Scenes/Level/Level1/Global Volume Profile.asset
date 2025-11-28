@@ -357,13 +357,13 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0.826
   clamp:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 65472
   tint:
     m_OverrideState: 1
     m_Value: {r: 0.39607844, g: 0.3686713, b: 0.078431375, a: 1}
   highQualityFiltering:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   downscale:
     m_OverrideState: 1

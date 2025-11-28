@@ -33,9 +33,11 @@ public class InventoryArmor : MonoBehaviour
             if (item._itemStatus != ItemStatus.UnEquip) continue;
             for (int i = 0; i < InventoryConstants.MAX_ARMOR; i++)
             {
-                var _imgItem = _items[i].GetComponent<ItemUiController>()._itemIcon;
+                var _itemUiController = _items[i].GetComponent<ItemUiController>();
+                var _imgItem = _itemUiController._itemIcon;
                 if (_imgItem.enabled == true) continue;
                 InventoryManager.Instance.addItemInInventory(item, _items[i]);
+                _itemUiController.checkItemsRarity();
                 break;
             }
         }

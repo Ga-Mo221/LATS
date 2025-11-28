@@ -18,6 +18,18 @@ public class MenuController : MonoBehaviour
             Debug.LogError("[MenuController] Chua lay duoc LoadMainMenuLanguage");
     }
 
+    void OnEnable()
+    {
+        if (GameManager.Instance == null) return;
+        GameManager.Instance.startMusicBGCount++;
+        int startmusic = GameManager.Instance.startMusicBGCount;
+
+        if (SoundManager.Instance != null && startmusic >= 2)
+        {
+            SoundManager.Instance.PlayMainMenuSound();
+        }
+    }
+
     public void newGame()
     {
         if (_changeSceneAnim == null) return;
@@ -28,6 +40,10 @@ public class MenuController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         GameManager.Instance.newGame();
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.stopMainMenuSound();
+        }
     }
 
     public void openSetting()

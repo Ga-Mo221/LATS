@@ -16,10 +16,12 @@ public class Chest : MonoBehaviour
     private int _enemyDieCount;
     
     public bool _isXeng = false;
-    [ShowIf(nameof(_isXeng))]
-    [SerializeField] private Transform _coinDropParrent;
-    [ShowIf(nameof(_isXeng))]
-    [SerializeField] private int _xengCount = 0;
+
+    [SerializeField] private GameObject _light;
+    // [ShowIf(nameof(_isXeng))]
+    // [SerializeField] private Transform _coinDropParrent;
+    // [ShowIf(nameof(_isXeng))]
+    // [SerializeField] private int _xengCount = 0;
 
     public bool _isItems = false;
     [ShowIf(nameof(_isItems))]
@@ -43,11 +45,18 @@ public class Chest : MonoBehaviour
         {
             Debug.LogError("hãy gắn profile/ItemPickUp/ScrollView/Viewport/Content vào ");
         }
-        if (_isXeng && _coinDropParrent == null)
-        {
-            Debug.LogError("hãy tạo một gameobj rỗng và gắn vào");
-        }
         _anim = GetComponent<Animator>();
+        
+    }
+
+    void Start()
+    {
+        // if (_Enemy)
+        // {
+        //     transform.GetComponent<SpriteRenderer>().enabled = false;
+        //     spawnTuiItems(30f);
+        // }
+        _itemsDropParent = setKnocked.Instance.viewTransform;
         if (_isItems && _allItem.Count > 0)
         {
             foreach (var item in _allItem)
@@ -58,15 +67,6 @@ public class Chest : MonoBehaviour
             }
         }
     }
-
-    // void Start()
-    // {
-    //     if (_Enemy)
-    //     {
-    //         transform.GetComponent<SpriteRenderer>().enabled = false;
-    //         spawnTuiItems(30f);
-    //     }
-    // }
 
     void Update()
     {
@@ -105,6 +105,20 @@ public class Chest : MonoBehaviour
                     Debug.LogError("Không tìm thấy ItemUiController");
             }
         }
+        if (_rtItems.Count <= 0)
+        {
+            if (!_anim.GetBool("isEmpty"))
+            {
+                _anim.SetBool("isEmpty", true);
+                if (_light != null)
+                    _light.SetActive(false);
+            }
+        }
+    }
+
+    public void addItems(Item item)
+    {
+        _allItem.Add(item);
     }
 
     public void setEnemyDieCount(int count)
@@ -188,6 +202,8 @@ public class Chest : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
+        if (_isItems && _rtItems.Count <= 0) return;
+
         if (collision.CompareTag("Player") && !_Enemy)
         {
             if (/*_isXeng &&*/ !_isOpened)

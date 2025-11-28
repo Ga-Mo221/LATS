@@ -85,7 +85,9 @@ public abstract partial class EnemyBase
             PlayerState state = PlayerManager.Instance.getCurrentState();
 
             // Nếu player đang ngồi hoặc đột kích thì KHÔNG phát hiện
-            if (state == PlayerState.Sit || state == PlayerState.Sit_Walk || state == PlayerState.Ground_Attack)
+            if (state == PlayerState.Sit || 
+                state == PlayerState.Sit_Walk || 
+                state == PlayerState.Ground_Attack)
             {
                 return false;
             }

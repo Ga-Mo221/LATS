@@ -23,12 +23,14 @@ public class ContextMenuController : MonoBehaviour
     public void equip()
     {
         InventoryManager.Instance.equip(_rtItem);
+        _itemUiController.checkItemsRarity();
         _ovelay.SetActive(false);
     }
 
     public void unEquip()
     {
         InventoryManager.Instance.unEquip(_rtItem);
+        _itemUiController.checkItemsRarity();
         _ovelay.SetActive(false);
     }
 

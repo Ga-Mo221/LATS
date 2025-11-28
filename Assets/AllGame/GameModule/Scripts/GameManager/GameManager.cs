@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 
 
     #region value
+    public int startMusicBGCount = 0;
     public bool _canOpenWindown = true;
     // setting
     public GameObject _setting { get; set; }
